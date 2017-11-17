@@ -20,7 +20,8 @@ public class CSV_Reader {
 			if (file.exists()) {
 				FileReader fReader = new FileReader(file);
 				LineNumberReader lnReader = new LineNumberReader(fReader);
-
+				
+				//Counter for line number
 				int lineNumber = 0;
 
 				while (lnReader.readLine() != null) {
@@ -32,6 +33,7 @@ public class CSV_Reader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//Returns -1 if the file does not exist
 		return -1;
 	}
 

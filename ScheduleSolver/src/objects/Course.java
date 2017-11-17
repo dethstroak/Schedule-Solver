@@ -18,10 +18,27 @@ public class Course {
 	
 	boolean daysArray[] = new boolean[5]; 
 	
+	public LocalTime getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
+	}
+
+	public LocalTime getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
+	}
+
 	public Course(String professorName, String courseTaught, String daysHeld, String timeHeld, int roomNumber, int creditHours) {
 		this.professorName = professorName.replaceAll(" ", ",");
 		this.courseTaught = courseTaught;
 		
+		//Changes standard input times to military standard times
 		startTime = TimeManager.standardToMilitary(timeHeld.substring(0, timeHeld.indexOf('-')));
 		endTime = TimeManager.standardToMilitary((timeHeld.substring(timeHeld.indexOf('-')+1)));
 		
@@ -78,10 +95,11 @@ public class Course {
 		this.professorName = professorName;
 	}
 	
-	public boolean[] getdaysArray() {
+	public boolean[] getDaysArray() {
 		return this.daysArray;
 	}
 	
+	//Days of the week set to boolean values of true or false depending on if class is that day
 	public void setdaysArray(String daysHeld) {
 		for(char c:daysHeld.toCharArray()) {
 			switch(c) {
