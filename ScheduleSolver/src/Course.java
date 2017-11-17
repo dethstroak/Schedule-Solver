@@ -3,41 +3,53 @@ public class Course {
 	
 	String professorName = "",
 			courseTaught = "",
-			timeHeld = "";
-	int roomNumber = -1;
-	boolean daysHeld[] = new boolean[5]; 
+			timeHeld = "",
+			daysHeld = "";
+	int roomNumber = -1,
+		creditHours = 0;
+	boolean daysArray[] = new boolean[5]; 
 	
-	public Course(String professorName, String courseTaught, String daysHeld, String timeHeld, int roomNumber) {
-		this.professorName = professorName;
+	public Course(String professorName, String courseTaught, String daysHeld, String timeHeld, int roomNumber, int creditHours) {
+		this.professorName = professorName.replaceAll(" ", ",");
 		this.courseTaught = courseTaught;
 		this.timeHeld = timeHeld;
 		this.roomNumber = roomNumber;
+		this.creditHours = creditHours;
+		this.daysHeld = daysHeld;
 		
 		for(char c:daysHeld.toCharArray()) {
 			switch(c) {
 			case 'M':
-				this.daysHeld[0]=true;
+				this.daysArray[0]=true;
 				break;
 			case 'T':
-				this.daysHeld[1]=true;
+				this.daysArray[1]=true;
 				break;
 			case 'W':
-				this.daysHeld[2]=true;
+				this.daysArray[2]=true;
 				break;
 			case 'R':
-				this.daysHeld[3]=true;
+				this.daysArray[3]=true;
 				break;
 			case 'F':
-				this.daysHeld[4]=true;
+				this.daysArray[4]=true;
 				break;
 			}
 		}
 	}
 	
 	public String toString() {
-		return professorName + " -- " + daysHeld + " -- " + timeHeld + " -- " + roomNumber;
+		return professorName + " -- " + daysHeld + " -- " + timeHeld + " -- " + roomNumber + "-- " + creditHours;
 	}
-
+	
+	public int getCreditHours() {
+		return this.creditHours;
+	}
+	
+	public void setCreditHours(int creditHours) {
+		this.creditHours = creditHours;
+	}
+	
 	public String getProfessorName() {
 		return professorName;
 	}
@@ -54,27 +66,27 @@ public class Course {
 		this.professorName = professorName;
 	}
 	
-	public boolean[] getDaysHeld() {
-		return this.daysHeld;
+	public boolean[] getdaysArray() {
+		return this.daysArray;
 	}
 	
-	public void setDaysHeld(String days) {
-		for(char c:days.toCharArray()) {
+	public void setdaysArray(String daysHeld) {
+		for(char c:daysHeld.toCharArray()) {
 			switch(c) {
 			case 'M':
-				this.daysHeld[0]=true;
+				this.daysArray[0]=true;
 				break;
 			case 'T':
-				this.daysHeld[1]=true;
+				this.daysArray[1]=true;
 				break;
 			case 'W':
-				this.daysHeld[2]=true;
+				this.daysArray[2]=true;
 				break;
 			case 'R':
-				this.daysHeld[3]=true;
+				this.daysArray[3]=true;
 				break;
 			case 'F':
-				this.daysHeld[4]=true;
+				this.daysArray[4]=true;
 				break;
 			}
 		}

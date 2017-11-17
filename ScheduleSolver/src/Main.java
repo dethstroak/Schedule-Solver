@@ -5,7 +5,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		CSV_Reader cReader = new CSV_Reader();
-		String filePath = "C:/Development/Java/Workspace/ScheduleSolver/files/TestVal.txt";
+		String filePath = "C:/Development/GitHub/Schedule-Solver/ScheduleSolver/files/TestVal.csv";
 		
 		Course[] scheduleVal = cReader.getCourses(filePath);
 		
