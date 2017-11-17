@@ -45,16 +45,17 @@ public class CSV_Reader {
 				// Split on the comma
 				String[] scheduleVal = line.split(cvsSplitBy);
 				scheduleValues[counter] = new Course(scheduleVal[0], scheduleVal[1], scheduleVal[2], scheduleVal[3],
-						Integer.parseInt(scheduleVal[4]));
+													 Integer.parseInt(scheduleVal[4]), Integer.parseInt(scheduleVal[5]));
 				counter++;
 				/***********************************************************************
 				 * scheduleVal Format
 				 * 
 				 * professorName,daysHeld,timesHeld,roomNumber
 				 * 
-				 * professorName -- "John Smith" will be formatted as "Smith John" daysHeld --
-				 * "Tuesday Thursday" will be "TR" and etc. timesHeld -- "11:00AM-11:50AM" will
-				 * be as stated roomNumber -- integer greater than 0
+				 * professorName -- "John Smith" will be formatted as "Smith John" 
+				 * daysHeld -- "Tuesday Thursday" will be "TR" and etc. 
+				 * timesHeld -- "11:00AM-11:50AM" will be in military time
+				 * roomNumber -- integer greater than 0
 				 ***********************************************************************/
 
 			}
