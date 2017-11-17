@@ -1,18 +1,30 @@
+package objects;
+import java.time.LocalTime;
+
+import toolbox.TimeManager;
 
 public class Course {
 	
 	String professorName = "",
-			courseTaught = "",
-			timeHeld = "",
-			daysHeld = "";
+		   courseTaught = "",
+		   timeHeld = "",
+		   daysHeld = "";
+	
 	int roomNumber = -1,
 		creditHours = 0;
+	
+	LocalTime startTime;
+	LocalTime endTime;
+	
 	boolean daysArray[] = new boolean[5]; 
 	
 	public Course(String professorName, String courseTaught, String daysHeld, String timeHeld, int roomNumber, int creditHours) {
 		this.professorName = professorName.replaceAll(" ", ",");
 		this.courseTaught = courseTaught;
-		this.timeHeld = timeHeld;
+		
+		startTime = TimeManager.standardToMilitary(timeHeld.substring(0, timeHeld.indexOf('-')));
+		endTime = TimeManager.standardToMilitary((timeHeld.substring(timeHeld.indexOf('-')+1)));
+		
 		this.roomNumber = roomNumber;
 		this.creditHours = creditHours;
 		this.daysHeld = daysHeld;
@@ -39,7 +51,7 @@ public class Course {
 	}
 	
 	public String toString() {
-		return professorName + " -- " + daysHeld + " -- " + timeHeld + " -- " + roomNumber + "-- " + creditHours;
+		return professorName + " -- " + daysHeld + " -- " + startTime + "-" + endTime + " -- " + roomNumber + "-- " + creditHours;
 	}
 	
 	public int getCreditHours() {
@@ -107,5 +119,4 @@ public class Course {
 	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
 	}
-
 }
