@@ -18,23 +18,34 @@ public class CourseComparison {
 
 		// Condition 1 -- Same course taught
 		if (course1.getCourseTaught().equals(course2.getCourseTaught())) {
+			System.out.println("Condition 1");
 			return true;
 		}
 		// Condition 2 -- Overlapping time and day
-		returnValue = conflictCondition2(course1, course2);
-
-		return returnValue;
-	}
-
-	public static boolean conflictCondition2(Course course1, Course course2) {
-		if (course1.getStartTime().equals(course2.getStartTime())) {
-			// Checks if classes occur on same day, if their start times are the same
-			for (int i = 0; i < course1.getDaysArray().length; i++) {
-				if (course1.getDaysArray()[i] == course2.getDaysArray()[i]) {
+		for(int i = 0; i < 5; i++) {
+			if(course1.getDaysArray()[i] = course2.getDaysArray()[i]) {
+				//Condition 2a
+				if(course1.getStartTime().isBefore(course2.getStartTime()) && course2.getEndTime().isAfter(course1.getEndTime()) ||
+				   course2.getStartTime().isBefore(course1.getStartTime()) && course1.getEndTime().isAfter(course2.getEndTime())) {
+					System.out.println("Condition 2a");
+					return true;
+				}
+				//Condition 2b
+				else if(course1.getStartTime().isAfter(course2.getStartTime()) && course2.getEndTime().isBefore(course1.getEndTime()) ||
+						course2.getStartTime().isAfter(course1.getStartTime()) && course1.getEndTime().isBefore(course2.getEndTime())) {
+					System.out.println("Condition 2b");
+					return true;
+				}
+				//Condition 2c
+				else if(course1.getStartTime().isAfter(course2.getStartTime()) && course2.getEndTime().isAfter(course1.getEndTime()) ||
+						course2.getStartTime().isAfter(course1.getStartTime()) && course1.getEndTime().isAfter(course2.getEndTime())) {
+					System.out.println("Condition 2c");
 					return true;
 				}
 			}
 		}
-		return false;
+		
+
+		return returnValue;
 	}
 }

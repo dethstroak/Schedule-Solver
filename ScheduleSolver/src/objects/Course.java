@@ -17,22 +17,6 @@ public class Course {
 	LocalTime endTime;
 	
 	boolean daysArray[] = new boolean[5]; 
-	
-	public LocalTime getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(LocalTime startTime) {
-		this.startTime = startTime;
-	}
-
-	public LocalTime getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(LocalTime endTime) {
-		this.endTime = endTime;
-	}
 
 	public Course(String professorName, String courseTaught, String daysHeld, String timeHeld, int roomNumber, int creditHours) {
 		this.professorName = professorName.replaceAll(" ", ",");
@@ -69,6 +53,22 @@ public class Course {
 	
 	public String toString() {
 		return professorName + " -- " + daysHeld + " -- " + startTime + "-" + endTime + " -- " + roomNumber + "-- " + creditHours;
+	}
+	
+	public LocalTime getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
+	}
+
+	public LocalTime getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
 	}
 	
 	public int getCreditHours() {
