@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 import objects.Course;
 import toolbox.CsvReader;
+import toolbox.ScheduleMaker;
 import toolbox.CourseComparison;
 import toolbox.TimeManager;
 
@@ -11,7 +12,7 @@ public class Tester {
 		Scanner in = new Scanner(System.in);
 		int choose = in.nextInt();
 		
-		//Tests reading from the file
+		//Tests CsvReader
 		if (choose == 0) {
 			String filePath = "files/TestVal.csv";
 
@@ -20,14 +21,18 @@ public class Tester {
 			for (int i = 0; i < CsvReader.getFileLength(filePath); i++) {
 				System.out.println(scheduleVal[i]);
 			}
-		} else if (choose == 1) {
+		} 
+		//Tests standardToMilitary in reference to time
+		else if (choose == 1) {
 			System.out.println(TimeManager.standardToMilitary("8:00AM"));
 			System.out.println(TimeManager.standardToMilitary("10:00AM"));
 			System.out.println(TimeManager.standardToMilitary("12:00PM"));
 			System.out.println(TimeManager.standardToMilitary("3:00PM"));
 			System.out.println(TimeManager.standardToMilitary("9:00PM"));
 
-		} else if(choose == 2) {
+		} 
+		//Tests CourseComparison
+		else if(choose == 2) {
 			//----------------------True Cases---------------------------
 			//Condition 1
 			Course course1 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
@@ -60,6 +65,13 @@ public class Tester {
 			Course course11 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
 			Course course12 = new Course("Saffold Gabriel", "IDS 1039", "TRF", "9:00AM-10:45AM", 1068, 3);
 			System.out.println(CourseComparison.conflict(course11, course12));
+		}
+		//Tests CourseComparison and ability to interface with ScheduleMaker and CsvReader
+		else if(choose == 3) {
+			String filePath = "files/TestVal.csv";
+			Course[] scheduleVal = CsvReader.getCourses(filePath);
+			
+			ScheduleMaker.makeScheduleFile(scheduleVal);
 		}
 
 	}
