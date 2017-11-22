@@ -24,7 +24,7 @@ public class CourseComparison {
 	}
 	
 	private static boolean overlapping(Course course0, Course course1) {
-		boolean overlapp =false;
+		boolean overlap =false;
 		LocalTime course0Start = course0.getStartTime();
 		LocalTime course0End = course0.getEndTime();
 		LocalTime course1Start = course1.getStartTime();
@@ -35,12 +35,12 @@ public class CourseComparison {
 		for(int i=0; i<course0Days.length; i++) {
 			if(course0Days[i] && course1Days[i]) {
 				if(!course0Start.isAfter(course1End) && !course1Start.isAfter(course0End)) {
-					overlapp = true;
+					overlap = true;
 					break;
 				}
 			}
 		}
-		return overlapp;
+		return overlap;
 	}
 	
 }
