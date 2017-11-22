@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 import objects.Course;
-import toolbox.CSV_Reader;
+import toolbox.CsvReader;
 import toolbox.CourseComparison;
 import toolbox.TimeManager;
 
@@ -13,12 +13,11 @@ public class Tester {
 		
 		//Tests reading from the file
 		if (choose == 0) {
-			CSV_Reader cReader = new CSV_Reader();
 			String filePath = "files/TestVal.csv";
 
-			Course[] scheduleVal = cReader.getCourses(filePath);
+			Course[] scheduleVal = CsvReader.getCourses(filePath);
 
-			for (int i = 0; i < cReader.getFileLength(filePath); i++) {
+			for (int i = 0; i < CsvReader.getFileLength(filePath); i++) {
 				System.out.println(scheduleVal[i]);
 			}
 		} else if (choose == 1) {

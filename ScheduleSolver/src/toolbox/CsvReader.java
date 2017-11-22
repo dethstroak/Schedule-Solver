@@ -7,13 +7,9 @@ import java.io.LineNumberReader;
 
 import objects.Course;
 
-public class CSV_Reader {
+public class CsvReader {
 
-	public CSV_Reader() {
-		//Empty constructor to initialize object
-	}
-
-	public int getFileLength(String toPath) {
+	public static int getFileLength(String toPath) {
 		try {
 			File file = new File(toPath);
 
@@ -37,7 +33,7 @@ public class CSV_Reader {
 		return -1;
 	}
 
-	public Course[] getCourses(String toPath) {
+	public static Course[] getCourses(String toPath) {
 
 		String line = "";
 		String cvsSplitBy = ",";
