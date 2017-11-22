@@ -32,7 +32,7 @@ public class ScheduleMaker {
 	
 	private static void createFile(String file, ArrayList<Course> arrData) throws IOException {
 		
-        FileWriter writer = new FileWriter("files/" + file + ".txt");
+        FileWriter writer = new FileWriter("files/output/" + file + ".txt");
         int size = arrData.size();
         for (int i=0;i<size;i++) {
             String str = arrData.get(i).toString();

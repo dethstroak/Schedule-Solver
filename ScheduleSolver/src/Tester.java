@@ -14,7 +14,7 @@ public class Tester {
 		
 		//Tests CsvReader
 		if (choose == 0) {
-			String filePath = "files/TestVal.csv";
+			String filePath = "files/input/TestVal.csv";
 
 			Course[] scheduleVal = CsvReader.getCourses(filePath);
 
