@@ -1,37 +1,116 @@
 package toolbox;
 
-import toolbox.CourseComparison;
-import objects.Course;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import objects.Course;
 
 public class ScheduleMaker {
 	
-	public static void makeScheduleFile(Course[] courseValues) {
-		for(int i = 0; i < courseValues.length; i++) {
-			ArrayList<Course> courseList = new ArrayList<Course>();
-				boolean conflict = false;
-				for(int k = 0; k < courseValues.length; k++) {
-					conflict = CourseComparison.conflict(courseValues[i], courseValues[k]);
-				}
-				
-				if(!conflict) {
-					courseList.add(courseValues[i]);
-				}
-			//Outputs the schedule to a .txt file
-			try {
-				createFile(("Schedule" + i), courseList);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	public static void makeScheduleFile(Course[] courseValues) throws IOException {
+		Map<String, List<Course>> courseMap = new HashMap<String, List<Course>>();
+		
+//		System.out.println(Arrays.toString(courseValues));
+		
+		//KYS
+		for(Course course:courseValues){
+			String courseTaught = course.getCourseTaught();
+			List<Course> courseList = courseMap.get(courseTaught);
+			if(courseList != null){
+				courseList.add(course);
+			}else{
+				List<Course> newCourseList = new ArrayList<Course>();
+				newCourseList.add(course);
+				courseMap.put(courseTaught, newCourseList);
 			}
+		}
+		
+//		for (Map.Entry<String, List<Course>> entry : courseMap.entrySet()) {
+//		    System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+//		}
+		
+		ArrayList<String> courses = new ArrayList<String>(courseMap.keySet());
+		
+//		System.out.println(Arrays.toString(courses.toArray()));
+		
+		List<List<Course>> group = new ArrayList<List<Course>>();
+		
+		for(int i=0; i<courses.size(); i++){
+			group.add(courseMap.get(courses.get(i)));
+		}
+		
+//		for(List<Course> thing : group){
+//			System.out.println(Arrays.toString(thing.toArray()));
+//		}
+		
+		group = getAllCases(group);
+		
+		List<List<Course>> validSchedules = new ArrayList<List<Course>>();
+		
+		for(List<Course> schedule : group){
+			boolean conflict = false;
+			for(int i=0; i<schedule.size(); i++){
+				for(int j=i+1; j<schedule.size(); j++){
+					conflict = CourseComparison.conflict(schedule.get(i), schedule.get(j));
+				}
+			}
+			if(!conflict){
+				validSchedules.add(schedule);
+			}
+		}
+		
+		for(int i=0; i<validSchedules.size(); i++){
+			createFile("schedule" + i, validSchedules.get(i));
 		}
 	}
 	
-	private static void createFile(String file, ArrayList<Course> arrData) throws IOException {
-		
+	public static List<List<Course>> getAllCases(List<List<Course>> totalList)
+    {
+        List<List<Course>> result = new ArrayList<List<Course>>();
+        
+//        System.out.println(Arrays.toString(totalList.get(0).toArray()));
+        
+        for(int i=0; i<totalList.get(0).size(); i++){
+        	result.add(i, new ArrayList<Course>(Arrays.asList(totalList.get(0).get(i))));
+        }
+
+        for(int index = 1; index < totalList.size() ; index++)
+        {
+            result = combineTwoLists(result, totalList.get(index));
+        }
+        
+//        System.out.println("\n" + Arrays.toString(result.toArray()));
+     
+        return result;
+    }
+
+    private static List<List<Course>> combineTwoLists(List<List<Course>> list1, List<Course>   list2)
+    {
+        List<List<Course>> result = new ArrayList<List<Course>>();
+        
+        for(List<Course> s1 : list1)
+        {
+            for(Course s2: list2)
+            {
+            	List<Course> temp = new ArrayList<Course>(s1);
+            	temp.add(s2);
+            	result.add(temp);
+//            	System.out.println(Arrays.toString(temp.toArray()) + ":" + Arrays.toString(s1.toArray()));
+//            	System.out.println("\n" + Arrays.toString(result.toArray()));
+            }
+        }
+//        System.out.println("\n" + Arrays.toString(result.toArray()));
+        return result;
+    }
+	
+	private static void createFile(String file, List<Course> arrData) throws IOException {
+		//File fileTemp = new File()
         FileWriter writer = new FileWriter("files/output/" + file + ".txt");
         int size = arrData.size();
         for (int i=0;i<size;i++) {

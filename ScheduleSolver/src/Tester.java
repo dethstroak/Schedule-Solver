@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 import objects.Course;
@@ -68,10 +69,15 @@ public class Tester {
 		}
 		//Tests CourseComparison and ability to interface with ScheduleMaker and CsvReader
 		else if(choose == 3) {
-			String filePath = "files/TestVal.csv";
+			String filePath = "files/input/TestVal.csv";
 			Course[] scheduleVal = CsvReader.getCourses(filePath);
 			
-			ScheduleMaker.makeScheduleFile(scheduleVal);
+			try {
+				ScheduleMaker.makeScheduleFile(scheduleVal);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}
