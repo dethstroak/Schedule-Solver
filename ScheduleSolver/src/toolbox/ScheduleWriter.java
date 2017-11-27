@@ -7,11 +7,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import objects.Course;
 
-public class ScheduleMaker {
+public class ScheduleWriter {
 	
 	public static void makeScheduleFile(Course[] courseValues) throws IOException {
 		Map<String, List<Course>> courseMap = new HashMap<String, List<Course>>();
