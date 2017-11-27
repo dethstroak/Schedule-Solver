@@ -1,7 +1,6 @@
 package toolbox;
 
 import java.time.LocalTime;
-
 import objects.Course;
 
 /*
@@ -13,16 +12,42 @@ import objects.Course;
  * 	b] Course 1 starts during Course 2 and ends after Course 2
  * 	c] Course 1 starts and ends during Course 2
  */
-public class CourseComparison {
 
+/**
+ *  Conflict detection tool between two Course  
+ */
+public class CourseComparison {
+	
+	/**
+	 *  Find conflicts between course0 and course1
+	 *  
+	 *  @param course0 Base course
+	 *  @param course1 Course to compare to course0
+	 */
 	public static boolean conflict(Course course0, Course course1) {
 		return (sameCourse(course0, course1) || overlapping(course0, course1));
 	}
 	
+	/**
+	 *  Find if course0 and course1 are the same
+	 *  
+	 *  @param course0 Base course
+	 *  @param course1 Course to compare to course0
+	 *  
+	 *  @return True if courses are the same course, False otherwise
+	 */
 	private static boolean sameCourse(Course course0, Course course1) {
 		return course0.getCourseTaught().equals(course1.getCourseTaught());
 	}
 	
+	/**
+	 *  Find if course0 and course1 are overlapping in time/day
+	 *  
+	 *  @param course0 Base course
+	 *  @param course1 Course to compare to course0
+	 *  
+	 *  @return True if courses are overlapping, False is courses aren't overlapping
+	 */
 	private static boolean overlapping(Course course0, Course course1) {
 		boolean overlap =false;
 		LocalTime course0Start = course0.getStartTime();

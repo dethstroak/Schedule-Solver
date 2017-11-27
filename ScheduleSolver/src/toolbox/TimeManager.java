@@ -3,6 +3,8 @@ package toolbox;
 import java.time.LocalTime;
 
 public class TimeManager {
+	
+	//TODO documentation for TimeManager and standardToMilitary
 	public static LocalTime standardToMilitary(String time) {
 		LocalTime militaryTime = LocalTime.parse("00:00");
 		if (time.endsWith("PM")) { // If afternoon
