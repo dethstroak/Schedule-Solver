@@ -1,4 +1,5 @@
 package toolbox;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,6 +10,15 @@ import objects.Course;
 
 public class CsvReader {
 
+	/**
+	 * Gets the length of the file in order to correctly output data within the
+	 * file
+	 *
+	 * @param toPath
+	 *            Path to find the .csv file specified by the user
+	 * 
+	 * @return Length of the file, in terms of how many lines the file is long
+	 */
 	public static int getFileLength(String toPath) {
 		try {
 			File file = new File(toPath);
@@ -16,8 +26,8 @@ public class CsvReader {
 			if (file.exists()) {
 				FileReader fReader = new FileReader(file);
 				LineNumberReader lnReader = new LineNumberReader(fReader);
-				
-				//Counter for line number
+
+				// Counter for line number
 				int lineNumber = 0;
 
 				while (lnReader.readLine() != null) {
@@ -29,10 +39,18 @@ public class CsvReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//Returns -1 if the file does not exist
+		// Returns -1 if the file does not exist
 		return -1;
 	}
 
+	/**
+	 * Gets a Course array from a path for a .csv file specified by the user
+	 *
+	 * @param toPath
+	 *            Path to find the .csv file specified by the user
+	 * 
+	 * @return An array of Course data for the user to manipulate as needed
+	 */
 	public static Course[] getCourses(String toPath) {
 
 		String line = "";
@@ -45,19 +63,13 @@ public class CsvReader {
 
 				// Split on the comma
 				String[] scheduleVal = line.split(cvsSplitBy);
-				scheduleValues[counter] = new Course(scheduleVal[0], scheduleVal[1], scheduleVal[2], scheduleVal[3],
-													 Integer.parseInt(scheduleVal[4]), Integer.parseInt(scheduleVal[5]));
+				scheduleValues[counter] = new Course(scheduleVal[0], // professorName
+						scheduleVal[1], // courseTaught
+						scheduleVal[2], // daysHeld
+						scheduleVal[3], // timesHeld
+						Integer.parseInt(scheduleVal[4]), // roomNumber
+						Integer.parseInt(scheduleVal[5])); // creditHours
 				counter++;
-				/***********************************************************************
-				 * scheduleVal Format
-				 * 
-				 * professorName,daysHeld,timesHeld,roomNumber
-				 * 
-				 * professorName -- "John Smith" will be formatted as "Smith John" 
-				 * daysHeld -- "Tuesday Thursday" will be "TR" and etc. 
-				 * timesHeld -- "11:00AM-11:50AM" will be in military time
-				 * roomNumber -- integer greater than 0
-				 ***********************************************************************/
 
 			}
 
