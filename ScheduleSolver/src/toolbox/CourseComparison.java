@@ -58,7 +58,11 @@ public class CourseComparison {
 		boolean[] course1Days = course1.getDaysArray();
 		
 		for(int i=0; i<course0Days.length; i++) {
+//			System.out.println(i + ": " + (course0Days[i] && course1Days[i]));
 			if(course0Days[i] && course1Days[i]) {
+//				System.out.println(course0Start.isAfter(course1End));
+//				System.out.println(course1Start.isAfter(course0End));
+				
 				if(!course0Start.isAfter(course1End) && !course1Start.isAfter(course0End)) {
 					overlap = true;
 					break;
