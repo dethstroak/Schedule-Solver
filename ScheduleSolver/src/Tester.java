@@ -15,6 +15,24 @@ import toolbox.TimeManager;
  */
 public class Tester {
 
+
+	/**
+	 * New and improved Tester.java -- Now with documentation!
+	 */
+	public static void main(String[] args) {
+
+//		 testCsvReader();
+
+//		 testTimeManager();
+
+//		 testCourseComparison();
+
+//		 testScheduleWriter("TestVal");
+
+//		 clearScheduleFiles();
+
+	}
+	
 	/**
 	 * New and improved Tester.java -- Now with documentation!
 	 */
@@ -70,38 +88,45 @@ public class Tester {
 	 * one another
 	 */
 	public static void testCourseComparison() {
+		
+		Course course1 = new Course("Srinivasan Sesha", "PHY 2049", "TR", "2:30PM-3:20PM", 1049, 3);
+		Course course2 = new Course("Parchamy Homaira", "IDS 2034", "T", "1:00PM-2:50PM", 1053, 3);
+		System.out.println(CourseComparison.conflict(course1, course2));
+		
+		
+		
 		// ----------------------True Cases---------------------------
 		// Condition 1
-		Course course1 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
-		Course course2 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
-		System.out.println(CourseComparison.conflict(course1, course2));
-
-		// Condition 2a
-		Course course3 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
-		Course course4 = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:01AM-9:16AM", 1068, 3);
-		System.out.println(CourseComparison.conflict(course3, course4));
-
-		// Condition 2b
-		Course course5 = new Course("Saffold Gabriel", "IDS 1038", "MW", "9:00AM-10:15AM", 1068, 3);
-		Course course6 = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:00AM-9:15AM", 1068, 3);
-		System.out.println(CourseComparison.conflict(course5, course6));
-
-		// Condition 2c
-		Course course7 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:15AM-9:30AM", 1068, 3);
-		Course course8 = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:00AM-10:00AM", 1068, 3);
-		System.out.println(CourseComparison.conflict(course7, course8));
-
-		// --------------------False Cases---------------------------
-
-		// Condition 1
-		Course course9 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
-		Course course10 = new Course("Katugampola Don", "MAC 2311", "TRF", "12:30PM-1:45PM", 1044, 4);
-		System.out.println(CourseComparison.conflict(course9, course10));
-
-		// Condition 2
-		Course course11 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
-		Course course12 = new Course("Saffold Gabriel", "IDS 1039", "TRF", "9:00AM-10:45AM", 1068, 3);
-		System.out.println(CourseComparison.conflict(course11, course12));
+//		Course course1 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+//		Course course2 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+//		System.out.println(CourseComparison.conflict(course1, course2));
+//
+//		// Condition 2a
+//		Course course3 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+//		Course course4 = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:01AM-9:16AM", 1068, 3);
+//		System.out.println(CourseComparison.conflict(course3, course4));
+//
+//		// Condition 2b
+//		Course course5 = new Course("Saffold Gabriel", "IDS 1038", "MW", "9:00AM-10:15AM", 1068, 3);
+//		Course course6 = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:00AM-9:15AM", 1068, 3);
+//		System.out.println(CourseComparison.conflict(course5, course6));
+//
+//		// Condition 2c
+//		Course course7 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:15AM-9:30AM", 1068, 3);
+//		Course course8 = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:00AM-10:00AM", 1068, 3);
+//		System.out.println(CourseComparison.conflict(course7, course8));
+//
+//		// --------------------False Cases---------------------------
+//
+//		// Condition 1
+//		Course course9 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+//		Course course10 = new Course("Katugampola Don", "MAC 2311", "TRF", "12:30PM-1:45PM", 1044, 4);
+//		System.out.println(CourseComparison.conflict(course9, course10));
+//
+//		// Condition 2
+//		Course course11 = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+//		Course course12 = new Course("Saffold Gabriel", "IDS 1039", "TRF", "9:00AM-10:45AM", 1068, 3);
+//		System.out.println(CourseComparison.conflict(course11, course12));
 	}
 
 	/**

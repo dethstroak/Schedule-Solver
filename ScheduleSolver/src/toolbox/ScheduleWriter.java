@@ -62,9 +62,14 @@ public class ScheduleWriter {
 
 		for (List<Course> schedule : group) {
 			boolean conflict = false;
-			for (int i = 0; i < schedule.size(); i++) {
+outer: 		for (int i = 0; i < schedule.size(); i++) {
 				for (int j = i + 1; j < schedule.size(); j++) {
-					conflict = CourseComparison.conflict(schedule.get(i), schedule.get(j));
+					if(CourseComparison.conflict(schedule.get(i), schedule.get(j))) {
+						conflict = true;
+						break outer;
+					}else {
+						conflict = false;
+					}
 				}
 			}
 			if (!conflict) {
