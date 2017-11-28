@@ -38,6 +38,7 @@ public class Course {
 			int creditHours) {
 		this.professorName = professorName.replaceAll(" ", ",");
 		this.courseTaught = courseTaught;
+		this.timeHeld = timeHeld;
 
 		// Changes standard input times to military standard times
 		startTime = TimeManager.standardToMilitary(timeHeld.substring(0, timeHeld.indexOf('-')));
@@ -68,9 +69,9 @@ public class Course {
 		}
 	}
 
+	
 	public String toString() {
-		return courseTaught + " -- " + professorName + " -- " + daysHeld + " -- " + startTime + "-" + endTime + " -- " + roomNumber + "-- "
-				+ creditHours;
+		return professorName.replaceFirst(",", " ") + "," + courseTaught + "," + daysHeld + "," + timeHeld + "," + roomNumber + "," + creditHours;
 	}
 
 	/**

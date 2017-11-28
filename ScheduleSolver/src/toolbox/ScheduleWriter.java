@@ -129,7 +129,7 @@ outer: 		for (int i = 0; i < schedule.size(); i++) {
 	 */
 	private static void createFile(String file, List<Course> arrData) throws IOException {
 		// File fileTemp = new File()
-		FileWriter writer = new FileWriter("files/output/" + file + ".txt");
+		FileWriter writer = new FileWriter("files/output/" + file + ".csv");
 		int size = arrData.size();
 		for (int i = 0; i < size; i++) {
 			String str = arrData.get(i).toString();

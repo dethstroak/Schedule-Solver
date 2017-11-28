@@ -14,8 +14,7 @@ import toolbox.TimeManager;
  * ScheduleWriter classes
  */
 public class Tester {
-
-
+	
 	/**
 	 * New and improved Tester.java -- Now with documentation!
 	 */
@@ -27,26 +26,9 @@ public class Tester {
 
 //		 testCourseComparison();
 
-//		 testScheduleWriter("TestVal");
+//		 testScheduleWriter();
 
-//		 clearScheduleFiles();
-
-	}
-	
-	/**
-	 * New and improved Tester.java -- Now with documentation!
-	 */
-	public static void main(String[] args) {
-
-		// testCsvReader();
-
-		// testTimeManager();
-
-		// testCourseComparison();
-
-		// testScheduleWriter();
-
-		// clearScheduleFiles();
+		 clearScheduleFiles();
 
 	}
 
