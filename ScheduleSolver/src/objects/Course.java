@@ -69,7 +69,7 @@ public class Course {
 	}
 
 	public String toString() {
-		return professorName + " -- " + daysHeld + " -- " + startTime + "-" + endTime + " -- " + roomNumber + "-- "
+		return courseTaught + " -- " + professorName + " -- " + daysHeld + " -- " + startTime + "-" + endTime + " -- " + roomNumber + "-- "
 				+ creditHours;
 	}
 

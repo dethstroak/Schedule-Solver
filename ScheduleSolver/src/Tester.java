@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.io.File;
+import java.util.Scanner;
 
 import objects.Course;
 import toolbox.CsvReader;
@@ -15,13 +16,34 @@ import toolbox.TimeManager;
 public class Tester {
 
 	/**
+	 * New and improved Tester.java -- Now with documentation!
+	 */
+	public static void main(String[] args) {
+
+		// testCsvReader();
+
+		// testTimeManager();
+
+		// testCourseComparison();
+
+		// testScheduleWriter();
+
+		// clearScheduleFiles();
+
+	}
+
+	/**
 	 * Tests functionality of CsvReader to import values from .csv files into
 	 * arrays of usable data
-	 *
-	 * @param dataSet
-	 *            name of file currently being used as the data set
 	 */
-	public static void testCsvReader(String dataSet) {
+	public static void testCsvReader() {
+		// Input of value for the testing
+		Scanner in = new Scanner(System.in);
+		System.out.print("Dataset: ");
+		String dataSet = in.next();
+		in.close();
+		System.out.println("\n\n");
+
 		String filePath = "files/input/" + dataSet + ".csv";
 
 		Course[] scheduleVal = CsvReader.getCourses(filePath);
@@ -86,11 +108,15 @@ public class Tester {
 	 * Tests functionality of ScheduleWriter to export values from .csv files
 	 * into .txt files of valid schedules and interfacing with CsvReader,
 	 * TimeManager, and CourseComparison classes
-	 *
-	 * @param dataSet
-	 *            name of file currently being used as the data set
 	 */
-	public static void testScheduleWriter(String dataSet) {
+	public static void testScheduleWriter() {
+		// Input of value for the testing
+		Scanner in = new Scanner(System.in);
+		System.out.print("Dataset: ");
+		String dataSet = in.nextLine();
+		in.close();
+		System.out.println("\n\n");
+
 		String filePath = "files/input/" + dataSet + ".csv";
 		Course[] scheduleVal = CsvReader.getCourses(filePath);
 
@@ -115,23 +141,6 @@ public class Tester {
 				}
 			}
 		}
-	}
-
-	/**
-	 * New and improved Tester.java -- Now with documentation!
-	 */
-	public static void main(String[] args) {
-
-		// testCsvReader();
-
-		// testTimeManager();
-
-		// testCourseComparison();
-
-		// testScheduleWriter();
-
-		// clearScheduleFiles();
-
 	}
 
 }
