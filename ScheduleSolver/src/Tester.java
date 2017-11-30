@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Scanner;
 
 import objects.Course;
+import objects.Schedule;
 import toolbox.CsvReader;
 import toolbox.ScheduleWriter;
 import toolbox.CourseComparison;
@@ -27,8 +28,10 @@ public class Tester {
 //		 testCourseComparison();
 
 //		 testScheduleWriter();
+		
+		testScheduleObjectIntegration();
 
-		 clearScheduleFiles();
+//		 clearScheduleFiles();
 
 	}
 
@@ -133,7 +136,20 @@ public class Tester {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public static void testScheduleObjectIntegration(){
+		// Input of value for the testing
+				Scanner in = new Scanner(System.in);
+				System.out.print("Dataset: ");
+				String dataSet = in.next();
+				in.close();
+				System.out.println("\n\n");
+		
+		Schedule testSchedule = new Schedule(CsvReader.getCourses("files/input/" + dataSet + ".csv"));
+		System.out.println(testSchedule.getFinalEndTime());
+	}
+	
+	
 	/**
 	 * Resets /files/output/ to a blank directory with .phr(.placeholder) file
 	 * for further testing

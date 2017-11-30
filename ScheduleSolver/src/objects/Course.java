@@ -251,4 +251,14 @@ public class Course {
 	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
 	}
+
+
+	public String getDaysHeld() {
+		return daysHeld;
+	}
+
+
+	public void setDaysHeld(String daysHeld) {
+		this.daysHeld = daysHeld;
+	}
 }
