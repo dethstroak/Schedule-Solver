@@ -82,11 +82,14 @@ outer: 		for (int i = 0; i < schedule.size(); i++) {
 		}
 	}
 
-	// TODO documentation for this function
+	/**
+	 * Creates a list of all possible schedules given a list of all available times.  Each list is all possible times for a particular class.
+	 * 
+	 * @param totalList List of Courses with all possible times
+	 * @return List of all schedules
+	 */
 	public static List<List<Course>> getAllCases(List<List<Course>> totalList) {
 		List<List<Course>> result = new ArrayList<List<Course>>();
-
-		// System.out.println(Arrays.toString(totalList.get(0).toArray()));
 
 		for (int i = 0; i < totalList.get(0).size(); i++) {
 			result.add(i, new ArrayList<Course>(Arrays.asList(totalList.get(0).get(i))));
@@ -96,12 +99,16 @@ outer: 		for (int i = 0; i < schedule.size(); i++) {
 			result = combineTwoLists(result, totalList.get(index));
 		}
 
-		// System.out.println("\n" + Arrays.toString(result.toArray()));
-
 		return result;
 	}
 
-	// TODO documentation for this function
+	/**
+	 * Creates a new schedules for each possible time given in list2
+	 * 
+	 * @param list1 Current List of Schedules
+	 * @param list2 Class adding into schedules
+	 * @return new List of all possible schedules with new Class
+	 */
 	private static List<List<Course>> combineTwoLists(List<List<Course>> list1, List<Course> list2) {
 		List<List<Course>> result = new ArrayList<List<Course>>();
 
@@ -110,17 +117,14 @@ outer: 		for (int i = 0; i < schedule.size(); i++) {
 				List<Course> temp = new ArrayList<Course>(s1);
 				temp.add(s2);
 				result.add(temp);
-				// System.out.println(Arrays.toString(temp.toArray()) + ":" +
-				// Arrays.toString(s1.toArray()));
-				// System.out.println("\n" + Arrays.toString(result.toArray()));
 			}
 		}
-		// System.out.println("\n" + Arrays.toString(result.toArray()));
 		return result;
 	}
 
 	/**
 	 * Creates .txt files for all valid possible schedules given a List<Course>
+	 * 
 	 * 
 	 * @param file
 	 *            Name of the file to create

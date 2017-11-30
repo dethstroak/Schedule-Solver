@@ -89,9 +89,8 @@ public class Course {
 	 * @param startTime
 	 *            input of a new start time in standard time
 	 */
-	public void setStartTime(LocalTime startTime) {
-		// TODO set startTime passed in to military time
-		this.startTime = startTime;
+	public void setStartTime(String startTime) {
+		this.startTime = TimeManager.standardToMilitary(startTime);
 	}
 
 	/**
@@ -109,9 +108,8 @@ public class Course {
 	 * @param endTime
 	 *            input of a new start time in standard time
 	 */
-	public void setEndTime(LocalTime endTime) {
-		// TODO set endTime passed in to military time
-		this.endTime = endTime;
+	public void setEndTime(String endTime) {
+		this.endTime = TimeManager.standardToMilitary(endTime);
 	}
 
 	/**
@@ -229,7 +227,8 @@ public class Course {
 	 *            time the course is held in standard time
 	 */
 	public void setTimeHeld(String timeHeld) {
-		//TODO convert this to military time
+		startTime = TimeManager.standardToMilitary(timeHeld.substring(0, timeHeld.indexOf('-')));
+		endTime = TimeManager.standardToMilitary((timeHeld.substring(timeHeld.indexOf('-') + 1)));
 		this.timeHeld = timeHeld;
 	}
 
