@@ -9,6 +9,13 @@ import java.io.LineNumberReader;
 import objects.Course;
 
 public class CsvReader {
+	
+	public static int getDirectoryLength(String toPath) {
+		File directory = new File("files/output/");
+		if (directory.isDirectory()) {
+			return directory.listFiles().length;
+		}else return -1;
+	}
 
 	/**
 	 * Gets the length of the file in order to correctly output data within the
