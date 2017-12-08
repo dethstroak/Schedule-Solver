@@ -6,6 +6,8 @@ import toolbox.TimeManager;
 
 /**
  * Data type for containing course information
+ * 
+ * @author Justin Krum
  */
 public class Course {
 

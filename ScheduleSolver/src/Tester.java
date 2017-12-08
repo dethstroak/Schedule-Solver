@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import objects.Course;
@@ -29,7 +30,7 @@ public class Tester {
 
 //		 testScheduleWriter();
 		
-		testScheduleObjectIntegration();
+//		testScheduleObjectIntegration();
 
 //		 clearScheduleFiles();
 
@@ -146,7 +147,20 @@ public class Tester {
 				System.out.println("\n\n");
 		
 		Schedule testSchedule = new Schedule(CsvReader.getCourses("files/input/" + dataSet + ".csv"));
-		System.out.println(testSchedule.getFinalEndTime());
+		
+//		System.out.println(testSchedule.getFinalEndTime());
+		
+//		System.out.println(testSchedule.getFirstStartTime());
+
+//		System.out.println(Arrays.toString(testSchedule.getProfessorNames()));
+
+//		System.out.println(Arrays.toString(testSchedule.getDaysArray()));
+
+//		System.out.println(Arrays.toString(testSchedule.getDaysHeld()));
+
+//		System.out.println(Arrays.toString(testSchedule.getTimesHeld()));
+
+//		System.out.println(Arrays.toString(testSchedule.getCourses()));
 	}
 	
 	

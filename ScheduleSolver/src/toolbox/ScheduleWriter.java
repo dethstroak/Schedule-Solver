@@ -12,6 +12,8 @@ import objects.Course;
 
 /**
  * Creates all valid possible schedules
+ * 
+ * @author Grayton Ward and Justin Krum
  */
 public class ScheduleWriter {
 
@@ -20,6 +22,8 @@ public class ScheduleWriter {
 	 * 
 	 * @param courseValues
 	 *            Array of Course to sort into schedules
+	 *            
+	 * @author Grayton Ward
 	 */
 	public static void makeScheduleFile(Course[] courseValues) throws IOException {
 		Map<String, List<Course>> courseMap = new HashMap<String, List<Course>>();
@@ -87,6 +91,8 @@ outer: 		for (int i = 0; i < schedule.size(); i++) {
 	 * 
 	 * @param totalList List of Courses with all possible times
 	 * @return List of all schedules
+	 *            
+	 * @author Grayton Ward
 	 */
 	public static List<List<Course>> getAllCases(List<List<Course>> totalList) {
 		List<List<Course>> result = new ArrayList<List<Course>>();
@@ -107,7 +113,9 @@ outer: 		for (int i = 0; i < schedule.size(); i++) {
 	 * 
 	 * @param list1 Current List of Schedules
 	 * @param list2 Class adding into schedules
-	 * @return new List of all possible schedules with new Class
+	 * @return new List of all possible schedules with new Course
+	 *            
+	 * @author Grayton Ward
 	 */
 	private static List<List<Course>> combineTwoLists(List<List<Course>> list1, List<Course> list2) {
 		List<List<Course>> result = new ArrayList<List<Course>>();
@@ -130,6 +138,8 @@ outer: 		for (int i = 0; i < schedule.size(); i++) {
 	 *            Name of the file to create
 	 * @param arrData
 	 *            List that is output to the file
+	 *            
+	 * @author Justin Krum
 	 */
 	private static void createFile(String file, List<Course> arrData) throws IOException {
 		// File fileTemp = new File()
