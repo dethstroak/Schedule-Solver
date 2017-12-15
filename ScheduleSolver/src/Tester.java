@@ -34,7 +34,7 @@ public class Tester {
 
 		// testScheduleObjectIntegration();
 
-		testScheduleRefiner();
+		 testScheduleRefiner();
 
 		// clearScheduleFiles();
 
@@ -149,17 +149,21 @@ public class Tester {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		System.out.println("Made " + CsvReader.getDirectoryLength("files/output/") + " valid schedules");
+
 	}
 
 	public static void testScheduleObjectIntegration() {
 		// Input of value for the testing
 		Scanner in = new Scanner(System.in);
 		System.out.print("Dataset: ");
-		String dataSet = in.next();
+		String dataSet = in.nextLine();
 		in.close();
 		System.out.println("\n\n");
 
-		Schedule testSchedule = new Schedule(CsvReader.getCourses("files/input/" + dataSet + ".csv"));
+		// Schedule testSchedule = new Schedule(CsvReader.getCourses("files/input/" +
+		// dataSet + ".csv"));
 
 		// System.out.println(testSchedule.getFinalEndTime());
 
@@ -177,18 +181,22 @@ public class Tester {
 	}
 
 	public static void testScheduleRefiner() {
+		//Creates schedule files for testing
+		testScheduleWriter();
+		
+		//Sets up dummy Course value to be used as comparison
+		Course dummyCourse = new Course("professorName", "XXX 0000", "", "1:00AM-1:00AM", 0,0);
+		String newStartTime = "";
+		
 		Scanner in = new Scanner(System.in);
-		System.out.print("ScheduleWriter Dataset: ");
-		String inDataSet = in.nextLine();
-		try {
-			ScheduleWriter.makeScheduleFile(CsvReader.getCourses("files/input/" + inDataSet + ".csv"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		System.out.println(ScheduleRefiner.refineValidSchedules(
-				new Course("", "", "MWF", "8:00AM-3:20PM", 1049, 3)));
-
+		String testString = "9:00AM";
+		//TODO Ho line found when Scanner is used for input? but this works
+		System.out.println("Earliest prefered time for class: " + testString);
+		
+		dummyCourse.setStartTime(testString);
+		
+		System.out.println("Refined " + ScheduleRefiner.refineOnStart(dummyCourse) + " schedules");
+		in.close();
 	}
 
 	/**
