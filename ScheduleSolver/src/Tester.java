@@ -190,7 +190,7 @@ public class Tester {
 		
 		Scanner in = new Scanner(System.in);
 		String testString = "9:00AM";
-		//TODO Ho line found when Scanner is used for input? but this works
+		//TODO No line found when Scanner is used for input? but this works
 		System.out.println("Earliest prefered time for class: " + testString);
 		
 		dummyCourse.setStartTime(testString);
