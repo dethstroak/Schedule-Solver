@@ -185,7 +185,7 @@ public class Tester {
 		testScheduleWriter();
 		
 		//Sets up dummy Course value to be used as comparison
-		Course dummyCourse = new Course("professorName", "XXX 0000", "", "1:00AM-1:00AM", 0,0);
+		Course dummyCourse = new Course("professorName", "XXX 0000", "", "", 0,0);
 		String newStartTime = "";
 		
 		Scanner in = new Scanner(System.in);
