@@ -43,9 +43,13 @@ public class Course {
 		this.timeHeld = timeHeld;
 
 		// Changes standard input times to military standard times
-		startTime = TimeManager.standardToMilitary(timeHeld.substring(0, timeHeld.indexOf('-')));
-		endTime = TimeManager.standardToMilitary((timeHeld.substring(timeHeld.indexOf('-') + 1)));
-
+		try {
+			startTime = TimeManager.standardToMilitary(timeHeld.substring(0, timeHeld.indexOf('-')));
+			endTime = TimeManager.standardToMilitary((timeHeld.substring(timeHeld.indexOf('-') + 1)));
+		}catch(StringIndexOutOfBoundsException e) {
+			startTime = TimeManager.standardToMilitary("12:00AM");
+			endTime = TimeManager.standardToMilitary("1:00AM");
+		}
 		this.roomNumber = roomNumber;
 		this.creditHours = creditHours;
 		this.daysHeld = daysHeld;

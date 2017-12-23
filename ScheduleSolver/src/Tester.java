@@ -22,7 +22,20 @@ public class Tester {
 	/**
 	 * New and improved Tester.java -- Now with documentation!
 	 */
+	
+	public static Scanner in;
+	
+	public static void init() {
+		in = new Scanner(System.in);
+	}
+	
+	public static void cleanUp() {
+		in.close();
+	}
+	
 	public static void main(String[] args) {
+		
+		init();
 
 		// testCsvReader();
 
@@ -36,7 +49,9 @@ public class Tester {
 
 		 testScheduleRefiner();
 
-		// clearScheduleFiles();
+//		clearScheduleFiles();
+		 
+		cleanUp();
 
 	}
 
@@ -46,10 +61,8 @@ public class Tester {
 	 */
 	public static void testCsvReader() {
 		// Input of value for the testing
-		Scanner in = new Scanner(System.in);
 		System.out.print("Dataset: ");
 		String dataSet = in.next();
-		in.close();
 		System.out.println("\n\n");
 
 		String filePath = "files/input/" + dataSet + ".csv";
@@ -135,10 +148,8 @@ public class Tester {
 	 */
 	public static void testScheduleWriter() {
 		// Input of value for the testing
-		Scanner in = new Scanner(System.in);
 		System.out.print("Dataset: ");
 		String dataSet = in.nextLine();
-		in.close();
 		System.out.println("\n\n");
 
 		String filePath = "files/input/" + dataSet + ".csv";
@@ -156,10 +167,8 @@ public class Tester {
 
 	public static void testScheduleObjectIntegration() {
 		// Input of value for the testing
-		Scanner in = new Scanner(System.in);
 		System.out.print("Dataset: ");
 		String dataSet = in.nextLine();
-		in.close();
 		System.out.println("\n\n");
 
 		// Schedule testSchedule = new Schedule(CsvReader.getCourses("files/input/" +
@@ -188,15 +197,12 @@ public class Tester {
 		Course dummyCourse = new Course("professorName", "XXX 0000", "", "", 0,0);
 		String newStartTime = "";
 		
-		Scanner in = new Scanner(System.in);
-		String testString = "9:00AM";
-		//TODO No line found when Scanner is used for input? but this works
-		System.out.println("Earliest prefered time for class: " + testString);
+		String tester = in.nextLine();
+		System.out.println("Earliest prefered time for class: " + tester);
 		
-		dummyCourse.setStartTime(testString);
+		dummyCourse.setStartTime(tester);
 		
 		System.out.println("Refined " + ScheduleRefiner.refineOnStart(dummyCourse) + " schedules");
-		in.close();
 	}
 
 	/**
