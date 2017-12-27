@@ -16,6 +16,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
+/**
+ * GUI prompts user for ScheduleWriter information
+ * @see toolbox.ScheduleWriter
+ */
 public class ScheduleMakerGui {
 
 	private JFrame frmScheduleSolver;

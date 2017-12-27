@@ -8,6 +8,11 @@ import java.io.LineNumberReader;
 
 import objects.Course;
 
+/**
+ * All methods pertaining to reading information during File IO
+ * 
+ * @author Justin Krum
+ */
 public class CsvReader {
 	
 	public static int getDirectoryLength(String toPath) {

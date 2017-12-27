@@ -1,5 +1,6 @@
 package toolbox;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,9 +12,9 @@ import java.util.Map;
 import objects.Course;
 
 /**
- * Creates all valid possible schedules
+ * All methods that pertain to writing information duting File IO
  * 
- * @author Grayton Ward and Justin Krum
+ * @author Grayton Ward
  */
 public class ScheduleWriter {
 
@@ -22,7 +23,7 @@ public class ScheduleWriter {
 	 * 
 	 * @param courseValues
 	 *            Array of Course to sort into schedules
-	 *            
+	 * 
 	 * @author Grayton Ward
 	 */
 	public static void makeScheduleFile(Course[] courseValues) throws IOException {
@@ -43,7 +44,8 @@ public class ScheduleWriter {
 		}
 
 		// for (Map.Entry<String, List<Course>> entry : courseMap.entrySet()) {
-		// System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+		// System.out.println(entry.getKey() + ":" +
+		// entry.getValue().toString());
 		// }
 
 		ArrayList<String> courses = new ArrayList<String>(courseMap.keySet());
@@ -66,12 +68,12 @@ public class ScheduleWriter {
 
 		for (List<Course> schedule : group) {
 			boolean conflict = false;
-outer: 		for (int i = 0; i < schedule.size(); i++) {
+			outer: for (int i = 0; i < schedule.size(); i++) {
 				for (int j = i + 1; j < schedule.size(); j++) {
-					if(CourseComparison.conflict(schedule.get(i), schedule.get(j))) {
+					if (CourseComparison.conflict(schedule.get(i), schedule.get(j))) {
 						conflict = true;
 						break outer;
-					}else {
+					} else {
 						conflict = false;
 					}
 				}
@@ -87,11 +89,13 @@ outer: 		for (int i = 0; i < schedule.size(); i++) {
 	}
 
 	/**
-	 * Creates a list of all possible schedules given a list of all available times.  Each list is all possible times for a particular class.
+	 * Creates a list of all possible schedules given a list of all available
+	 * times. Each list is all possible times for a particular class.
 	 * 
-	 * @param totalList List of Courses with all possible times
+	 * @param totalList
+	 *            List of Courses with all possible times
 	 * @return List of all schedules
-	 *            
+	 * 
 	 * @author Grayton Ward
 	 */
 	public static List<List<Course>> getAllCases(List<List<Course>> totalList) {
@@ -111,10 +115,12 @@ outer: 		for (int i = 0; i < schedule.size(); i++) {
 	/**
 	 * Creates a new schedules for each possible time given in list2
 	 * 
-	 * @param list1 Current List of Schedules
-	 * @param list2 Class adding into schedules
+	 * @param list1
+	 *            Current List of Schedules
+	 * @param list2
+	 *            Class adding into schedules
 	 * @return new List of all possible schedules with new Course
-	 *            
+	 * 
 	 * @author Grayton Ward
 	 */
 	private static List<List<Course>> combineTwoLists(List<List<Course>> list1, List<Course> list2) {
@@ -138,7 +144,7 @@ outer: 		for (int i = 0; i < schedule.size(); i++) {
 	 *            Name of the file to create
 	 * @param arrData
 	 *            List that is output to the file
-	 *            
+	 * 
 	 * @author Justin Krum
 	 */
 	private static void createFile(String file, List<Course> arrData) throws IOException {
@@ -148,10 +154,26 @@ outer: 		for (int i = 0; i < schedule.size(); i++) {
 		for (int i = 0; i < size; i++) {
 			String str = arrData.get(i).toString();
 			writer.write(str);
-			if (i < size - 1)// This prevent creating a blank like at the end of the file
+			if (i < size - 1)// This prevent creating a blank like at the end of
+								// the file
 				writer.write("\n");
 		}
 		writer.close();
+	}
+
+	/**
+	 * Resets /files/output/ to a blank directory for further testing
+	 */
+	public static void clearScheduleFiles() {
+		File directory = new File("files/output/");
+		if (directory.isDirectory()) {
+			File[] files = directory.listFiles();
+			for (File f : files) {
+				if (f.toString().contains("schedule")) {
+					f.delete();
+				}
+			}
+		}
 	}
 
 }

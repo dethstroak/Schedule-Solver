@@ -8,7 +8,7 @@ import objects.Course;
 import objects.Schedule;
 
 /**
- * Refines the valid schedules based on times that the user want
+ * Refines the valid schedules based on times that the user wants
  * 
  * @author Justin Krum
  */

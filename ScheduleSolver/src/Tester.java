@@ -1,40 +1,50 @@
 
 import java.io.IOException;
-import java.time.LocalTime;
 import java.io.File;
-import java.util.Arrays;
 import java.util.Scanner;
 
-import objects.Course;
-import objects.Schedule;
-import toolbox.CsvReader;
-import toolbox.ScheduleRefiner;
-import toolbox.ScheduleWriter;
-import toolbox.CourseComparison;
-import toolbox.TimeManager;
+import gui.*;
+import objects.*;
+import toolbox.*;
 
 /**
- * Tester for functionality of CsvReader, TimeManager, CourseComparison,
- * ScheduleWriter classes
+ * Tester for functionality of various classes
  */
 public class Tester {
 
-	/**
-	 * New and improved Tester.java -- Now with documentation!
-	 */
-	
 	public static Scanner in;
 	
+	/**
+	 * Initializes global Tester values
+	 */
 	public static void init() {
 		in = new Scanner(System.in);
 	}
 	
+	/**
+	 * Cleans up global Tester values
+	 */
 	public static void cleanUp() {
 		in.close();
 	}
-	
+
+	/**
+	 * Resets /files/output/ to a blank directory for further testing
+	 */
+	public static void clearScheduleFiles() {
+		File directory = new File("files/output/");
+		if (directory.isDirectory()) {
+			File[] files = directory.listFiles();
+			for (File f : files) {
+				if (f.toString().contains("schedule")) {
+					f.delete();
+				}
+			}
+		}
+	}
+
 	public static void main(String[] args) {
-		
+
 		init();
 
 		// testCsvReader();
@@ -47,17 +57,24 @@ public class Tester {
 
 		// testScheduleObjectIntegration();
 
-		 testScheduleRefiner();
+		// testScheduleRefiner();
 
-//		clearScheduleFiles();
-		 
+		// testScheduleMakerGui();
+
+		// ***ONLY TEST IF SCHEDULE FILES EXIST ALREADY***
+		// testScheduleTable();
+
+		// clearScheduleFiles();
+
 		cleanUp();
 
 	}
 
 	/**
-	 * Tests functionality of CsvReader to import values from .csv files into arrays
-	 * of usable data
+	 * Tests functionality of CsvReader to import values from .csv files into
+	 * arrays of usable data
+	 * 
+	 * @see toolbox.CsvReader
 	 */
 	public static void testCsvReader() {
 		// Input of value for the testing
@@ -75,7 +92,8 @@ public class Tester {
 	}
 
 	/**
-	 * Tests functionality of TimeManager to change standard time to military time
+	 * Tests functionality of TimeManager
+	 * @see toolbox.TimeManager
 	 */
 	public static void testTimeManager() {
 		System.out.println(TimeManager.standardToMilitary("8:00AM"));
@@ -86,65 +104,57 @@ public class Tester {
 	}
 
 	/**
-	 * Tests functionality of CourseComparison to find if Courses conflict with one
-	 * another
+	 * Tests functionality of CourseComparison to find if Courses conflict with
+	 * one another
+	 * 
+	 * @see toolbox.CourseComparison
 	 */
 	public static void testCourseComparison() {
 
-		Course course1 = new Course("Srinivasan Sesha", "PHY 2049", "TR", "2:30PM-3:20PM", 1049, 3);
-		Course course2 = new Course("Parchamy Homaira", "IDS 2034", "T", "1:00PM-2:50PM", 1053, 3);
-		System.out.println(CourseComparison.conflict(course1, course2));
+		Course courseA = new Course("Srinivasan Sesha", "PHY 2049", "TR", "2:30PM-3:20PM", 1049, 3);
+		Course courseB = new Course("Parchamy Homaira", "IDS 2034", "T", "1:00PM-2:50PM", 1053, 3);
+		System.out.println(CourseComparison.conflict(courseA, courseB));
 
 		// ----------------------True Cases---------------------------
 		// Condition 1
-		// Course course1 = new Course("Saffold Gabriel", "IDS 1038",
-		// "MW","8:00AM-9:15AM", 1068, 3);
-		// Course course2 = new Course("Saffold Gabriel", "IDS 1038",
-		// "MW","8:00AM-9:15AM", 1068, 3);
-		// System.out.println(CourseComparison.conflict(course1, course2));
-		//
-		// // Condition 2a
-		// Course course3 = new Course("Saffold Gabriel", "IDS 1038",
-		// "MW","8:00AM-9:15AM", 1068, 3);
-		// Course course4 = new Course("Saffold Gabriel", "IDS 1039",
-		// "MW","8:01AM-9:16AM", 1068, 3);
-		// System.out.println(CourseComparison.conflict(course3, course4));
-		//
-		// // Condition 2b
-		// Course course5 = new Course("Saffold Gabriel", "IDS 1038",
-		// "MW","9:00AM-10:15AM", 1068, 3);
-		// Course course6 = new Course("Saffold Gabriel", "IDS 1039",
-		// "MW","8:00AM-9:15AM", 1068, 3);
-		// System.out.println(CourseComparison.conflict(course5, course6));
-		//
-		// // Condition 2c
-		// Course course7 = new Course("Saffold Gabriel", "IDS 1038",
-		// "MW","8:15AM-9:30AM", 1068, 3);
-		// Course course8 = new Course("Saffold Gabriel", "IDS 1039",
-		// "MW","8:00AM-10:00AM", 1068, 3);
-		// System.out.println(CourseComparison.conflict(course7, course8));
-		//
-		// // --------------------False Cases---------------------------
-		//
-		// // Condition 1
-		// Course course9 = new Course("Saffold Gabriel", "IDS 1038",
-		// "MW","8:00AM-9:15AM", 1068, 3);
-		// Course course10 = new Course("Katugampola Don", "MAC 2311",
-		// "TRF","12:30PM-1:45PM", 1044, 4);
-		// System.out.println(CourseComparison.conflict(course9, course10));
-		//
-		// // Condition 2
-		// Course course11 = new Course("Saffold Gabriel", "IDS 1038",
-		// "MW","8:00AM-9:15AM", 1068, 3);
-		// Course course12 = new Course("Saffold Gabriel", "IDS 1039",
-		// "TRF","9:00AM-10:45AM", 1068, 3);
-		// System.out.println(CourseComparison.conflict(course11, course12));
+		Course courseC = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+		Course courseD = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+		System.out.println(CourseComparison.conflict(courseC, courseD));
+
+		// Condition 2a
+		Course courseE = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+		Course courseF = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:01AM-9:16AM", 1068, 3);
+		System.out.println(CourseComparison.conflict(courseE, courseF));
+
+		// Condition 2b
+		Course courseG = new Course("Saffold Gabriel", "IDS 1038", "MW", "9:00AM-10:15AM", 1068, 3);
+		Course courseH = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:00AM-9:15AM", 1068, 3);
+		System.out.println(CourseComparison.conflict(courseG, courseH));
+
+		// Condition 2c
+		Course courseI = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:15AM-9:30AM", 1068, 3);
+		Course courseJ = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:00AM-10:00AM", 1068, 3);
+		System.out.println(CourseComparison.conflict(courseI, courseJ));
+
+		// --------------------False Cases---------------------------
+
+		// Condition 1
+		Course courseK = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+		Course courseL = new Course("Katugampola Don", "MAC 2311", "TRF", "12:30PM-1:45PM", 1044, 4);
+		System.out.println(CourseComparison.conflict(courseK, courseL));
+
+		// Condition 2
+		Course courseM = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+		Course courseN = new Course("Saffold Gabriel", "IDS 1039", "TRF", "9:00AM-10:45AM", 1068, 3);
+		System.out.println(CourseComparison.conflict(courseM, courseN));
 	}
 
 	/**
-	 * Tests functionality of ScheduleWriter to export values from .csv files into
-	 * .txt files of valid schedules and interfacing with CsvReader, TimeManager,
-	 * and CourseComparison classes
+	 * Tests functionality of ScheduleWriter to export values from .csv files
+	 * into .txt files of valid schedules and interfacing with CsvReader,
+	 * TimeManager, and CourseComparison classes
+	 * 
+	 * @see toolbox.ScheduleWriter
 	 */
 	public static void testScheduleWriter() {
 		// Input of value for the testing
@@ -165,59 +175,89 @@ public class Tester {
 
 	}
 
+	/**
+	 * Tests functionality of the Schedule object and all functions in the
+	 * object
+	 * 
+	 * @see objects.Schedule
+	 */
 	public static void testScheduleObjectIntegration() {
 		// Input of value for the testing
 		System.out.print("Dataset: ");
 		String dataSet = in.nextLine();
 		System.out.println("\n\n");
 
-		// Schedule testSchedule = new Schedule(CsvReader.getCourses("files/input/" +
-		// dataSet + ".csv"));
+		Schedule testSchedule = new Schedule(CsvReader.getCourses("files/input/" + dataSet + ".csv"));
 
-		// System.out.println(testSchedule.getFinalEndTime());
+		System.out.println(testSchedule.getFinalEndTime());
 
-		// System.out.println(testSchedule.getFirstStartTime());
-
-		// System.out.println(Arrays.toString(testSchedule.getProfessorNames()));
-
-		// System.out.println(Arrays.toString(testSchedule.getDaysArray()));
-
-		// System.out.println(Arrays.toString(testSchedule.getDaysHeld()));
-
-		// System.out.println(Arrays.toString(testSchedule.getTimesHeld()));
-
-		// System.out.println(Arrays.toString(testSchedule.getCourses()));
-	}
-
-	public static void testScheduleRefiner() {
-		//Creates schedule files for testing
-		testScheduleWriter();
+		System.out.println(testSchedule.getFirstStartTime());
 		
-		//Sets up dummy Course value to be used as comparison
-		Course dummyCourse = new Course("professorName", "XXX 0000", "", "", 0,0);
-		String newStartTime = "";
+		for(int i = 0; i < testSchedule.getProfessorNames().length; i++){
+			System.out.println(testSchedule.getProfessorNames()[i]);
+		}
 		
-		String tester = in.nextLine();
-		System.out.println("Earliest prefered time for class: " + tester);
+		for(int i = 0; i < testSchedule.getDaysArray().length; i++){
+			System.out.println(testSchedule.getDaysArray()[i]);
+		}
 		
-		dummyCourse.setStartTime(tester);
+		for(int i = 0; i < testSchedule.getDaysHeld().length; i++){
+			System.out.println(testSchedule.getDaysHeld()[i]);
+		}
 		
-		System.out.println("Refined " + ScheduleRefiner.refineOnStart(dummyCourse) + " schedules");
-	}
-
-	/**
-	 * Resets /files/output/ to a blank directory for further testing
-	 */
-	public static void clearScheduleFiles() {
-		File directory = new File("files/output/");
-		if (directory.isDirectory()) {
-			File[] files = directory.listFiles();
-			for (File f : files) {
-				if (f.toString().contains("schedule")) {
-					f.delete();
-				}
-			}
+		for(int i = 0; i < testSchedule.getTimesHeld().length; i++){
+			System.out.println(testSchedule.getTimesHeld()[i]);
+		}
+		
+		for(int i = 0; i < testSchedule.getCourses().length; i++){
+			System.out.println(testSchedule.getCourses()[i]);
 		}
 	}
 
+	/**
+	 * Tests the functionality of the ScheduleRefiner
+	 * @see toolbox.ScheduleRefiner
+	 */
+	public static void testScheduleRefiner() {
+		// Creates schedule files for testing
+		testScheduleWriter();
+
+		// Sets up dummy Course value to be used as comparison
+		Course dummyCourse = new Course("professorName", "XXX 0000", "", "", 0, 0);
+
+		int tester = in.nextInt();
+		int refinedSchedules = 0;
+		//Earliest class functionality
+		if(tester == 0){
+			String testerString = in.nextLine();
+			System.out.println("Earliest prefered time for class: " + testerString);
+
+			dummyCourse.setStartTime(testerString);
+			refinedSchedules = ScheduleRefiner.refineOnStart(dummyCourse);
+		}
+		//Latest class functionality
+		else if(tester == 1){
+			String testerString = in.nextLine();
+			System.out.println("Latest prefered time for class: " + testerString);
+
+			dummyCourse.setEndTime(testerString);
+			refinedSchedules = ScheduleRefiner.refineOnEnd(dummyCourse);
+		}
+
+		System.out.println("Refined " + refinedSchedules + " schedules");
+	}
+	
+	/**
+	 * @see gui.ScheduleTable
+	 */
+	public static void testScheduleTable() {
+		ScheduleTable.main(null);
+	}
+	
+	/**
+	 * @see gui.ScheduleMakerGui
+	 */
+	public static void testScheduleMakerGui() {
+		ScheduleMakerGui.main(null);
+	}
 }
