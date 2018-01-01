@@ -59,7 +59,7 @@ public class Tester {
 
 		// testScheduleRefiner();
 
-		// testScheduleMakerGui();
+		testScheduleMakerGui();
 
 		// ***ONLY TEST IF SCHEDULE FILES EXIST ALREADY***
 		// testScheduleTable();
