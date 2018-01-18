@@ -14,7 +14,7 @@ import objects.Course;
 /**
  * All methods that pertain to writing information duting File IO
  * 
- * @author Grayton Ward
+ * @author Grayton Ward and Justin Krum
  */
 public class ScheduleWriter {
 
@@ -154,8 +154,7 @@ public class ScheduleWriter {
 		for (int i = 0; i < size; i++) {
 			String str = arrData.get(i).toString();
 			writer.write(str);
-			if (i < size - 1)// This prevent creating a blank like at the end of
-								// the file
+			if (i < size - 1)// This prevent creating a blank like at the end of the file
 				writer.write("\n");
 		}
 		writer.close();
@@ -174,6 +173,29 @@ public class ScheduleWriter {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * 
+	 * @param coursesNeeded String array of the names of the courses needed by the user
+	 * @param toPath Path of the file that these course names are in
+	 * @return
+	 */
+	public static Course[] compileSchedule(String[] coursesNeeded, String toPath) {
+		List<Course> compiledSchedule = new ArrayList<Course>();
+		
+		//TODO decide which of the overloaded functions to use
+		Course[] avaliableCourses = CsvReader.getCourses(toPath);
+		
+		for(String name : coursesNeeded) {
+			for(int i = 0; i < avaliableCourses.length; i++) {
+				if(name.toUpperCase().equals(avaliableCourses[i].getCourseTaught().toUpperCase())) {
+					compiledSchedule.add(avaliableCourses[i]);
+				}
+			}
+		}
+		
+		return (Course[]) compiledSchedule.toArray();
 	}
 
 }

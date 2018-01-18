@@ -2,6 +2,7 @@ package toolbox;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
@@ -14,17 +15,17 @@ import objects.Course;
  * @author Justin Krum
  */
 public class CsvReader {
-	
+
 	public static int getDirectoryLength(String toPath) {
 		File directory = new File("files/output/");
 		if (directory.isDirectory()) {
 			return directory.listFiles().length;
-		}else return -1;
+		} else
+			return -1;
 	}
 
 	/**
-	 * Gets the length of the file in order to correctly output data within the
-	 * file
+	 * Gets the length of the file in order to correctly output data within the file
 	 *
 	 * @param toPath
 	 *            Path to find the .csv file specified by the user
@@ -54,15 +55,15 @@ public class CsvReader {
 		// Returns -1 if the file does not exist
 		return -1;
 	}
-	
+
 	/**
-	 * Gets the length of the file in order to correctly output data within the
-	 * file
+	 * Gets the length of the file in order to correctly output data within the file
 	 * 
-	 * @param inputFile File object pointing to input file
+	 * @param inputFile
+	 *            File object pointing to input file
 	 * @return Length of the file, in terms of how many lines the file is long
 	 */
-	
+
 	public static int getFileLength(File inputFile) {
 		try {
 			File file = inputFile;
@@ -124,8 +125,7 @@ public class CsvReader {
 			return null;
 		}
 	}
-	
-	
+
 	/**
 	 * Gets a Course array from a path for a .csv file specified by the user
 	 *
@@ -163,4 +163,17 @@ public class CsvReader {
 			return null;
 		}
 	}
+
+	public static String[] getCoursesNeeded(String toPath) {
+		String line = "";
+		String cvsSplitBy = ",";
+		try (BufferedReader bReader = new BufferedReader(new FileReader(toPath))) {
+				String[] coursesNeeded = line.split(cvsSplitBy);
+
+				return coursesNeeded;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
 }
