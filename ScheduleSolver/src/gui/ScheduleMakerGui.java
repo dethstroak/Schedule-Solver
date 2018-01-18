@@ -55,7 +55,7 @@ public class ScheduleMakerGui {
 		frmScheduleSolver.setResizable(false);
 		frmScheduleSolver.setFont(new Font("Arial", Font.PLAIN, 16));
 		frmScheduleSolver.setTitle("Schedule Solver");
-		frmScheduleSolver.setBounds(100, 100, 348, 140);
+		frmScheduleSolver.setBounds(100, 100, 360, 240);
 		frmScheduleSolver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmScheduleSolver.getContentPane().setLayout(null);
 
@@ -72,8 +72,8 @@ public class ScheduleMakerGui {
 		//		lblClassesValuesFile.setBounds(10, 42, 148, 14);
 		//		frmScheduleSolver.getContentPane().add(lblClassesValuesFile);
 
-		JButton btnMakeSchedule = new JButton("Make Schedules");
-		btnMakeSchedule.addActionListener(new ActionListener() {
+		JButton btnChooseCourseList = new JButton("Choose Course List");
+		btnChooseCourseList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					JFileChooser fc = new JFileChooser();
@@ -92,7 +92,16 @@ public class ScheduleMakerGui {
 				}
 			}
 		});
-		btnMakeSchedule.setBounds(97, 70, 129, 23);
-		frmScheduleSolver.getContentPane().add(btnMakeSchedule);
+		btnChooseCourseList.setBounds(5, 5, 345, 95);
+		frmScheduleSolver.getContentPane().add(btnChooseCourseList);
+		
+		JButton btnCreateCourseList = new JButton("Create Course List");
+		btnCreateCourseList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnCreateCourseList.setBounds(5, 105, 345, 95);
+		frmScheduleSolver.getContentPane().add(btnCreateCourseList);
 	}
 }
