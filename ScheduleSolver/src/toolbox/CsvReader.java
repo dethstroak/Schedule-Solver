@@ -164,16 +164,4 @@ public class CsvReader {
 		}
 	}
 
-	public static String[] getCoursesNeeded(String toPath) {
-		String line = "";
-		String cvsSplitBy = ",";
-		try (BufferedReader bReader = new BufferedReader(new FileReader(toPath))) {
-				String[] coursesNeeded = line.split(cvsSplitBy);
-
-				return coursesNeeded;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
 }

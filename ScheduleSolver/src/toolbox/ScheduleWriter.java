@@ -176,17 +176,20 @@ public class ScheduleWriter {
 	}
 	
 	/**
+	 * Give it a file of Course to compare to and String of the courseTaught codes you need, and it will poop out an array of
+	 * compatible Course variables
 	 * 
 	 * @param coursesNeeded String array of the names of the courses needed by the user
 	 * @param toPath Path of the file that these course names are in
-	 * @return
+	 * @return Course array to be sent to makeScheduleFile
+	 * 
+	 * @author Justin Krum
 	 */
-	public static Course[] compileSchedule(String[] coursesNeeded, String toPath) {
+	public static Course[] compileSchedule(String toPath, String[] coursesNeeded) {
 		List<Course> compiledSchedule = new ArrayList<Course>();
 		
 		//TODO decide which of the overloaded functions to use
 		Course[] avaliableCourses = CsvReader.getCourses(toPath);
-		
 		for(String name : coursesNeeded) {
 			for(int i = 0; i < avaliableCourses.length; i++) {
 				if(name.toUpperCase().equals(avaliableCourses[i].getCourseTaught().toUpperCase())) {
@@ -195,7 +198,12 @@ public class ScheduleWriter {
 			}
 		}
 		
-		return (Course[]) compiledSchedule.toArray();
+		Course[] compiledScheduleArray = new Course[compiledSchedule.size()];
+		for(int i = 0; i < compiledSchedule.size(); i++) {
+			compiledScheduleArray[i] = compiledSchedule.get(i);
+		}
+		
+		return compiledScheduleArray;
 	}
 
 }

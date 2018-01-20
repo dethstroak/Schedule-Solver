@@ -13,14 +13,14 @@ import toolbox.*;
 public class Tester {
 
 	public static Scanner in;
-	
+
 	/**
 	 * Initializes global Tester values
 	 */
 	public static void init() {
 		in = new Scanner(System.in);
 	}
-	
+
 	/**
 	 * Cleans up global Tester values
 	 */
@@ -59,10 +59,12 @@ public class Tester {
 
 		// testScheduleRefiner();
 
-		testScheduleMakerGui();
+		// testScheduleMakerGui();
 
 		// ***ONLY TEST IF SCHEDULE FILES EXIST ALREADY***
 		// testScheduleTable();
+
+		testScheduleCompilerFromFile();
 
 		// clearScheduleFiles();
 
@@ -71,8 +73,8 @@ public class Tester {
 	}
 
 	/**
-	 * Tests functionality of CsvReader to import values from .csv files into
-	 * arrays of usable data
+	 * Tests functionality of CsvReader to import values from .csv files into arrays
+	 * of usable data
 	 * 
 	 * @see toolbox.CsvReader
 	 */
@@ -93,6 +95,7 @@ public class Tester {
 
 	/**
 	 * Tests functionality of TimeManager
+	 * 
 	 * @see toolbox.TimeManager
 	 */
 	public static void testTimeManager() {
@@ -104,8 +107,8 @@ public class Tester {
 	}
 
 	/**
-	 * Tests functionality of CourseComparison to find if Courses conflict with
-	 * one another
+	 * Tests functionality of CourseComparison to find if Courses conflict with one
+	 * another
 	 * 
 	 * @see toolbox.CourseComparison
 	 */
@@ -150,9 +153,9 @@ public class Tester {
 	}
 
 	/**
-	 * Tests functionality of ScheduleWriter to export values from .csv files
-	 * into .txt files of valid schedules and interfacing with CsvReader,
-	 * TimeManager, and CourseComparison classes
+	 * Tests functionality of ScheduleWriter to export values from .csv files into
+	 * .txt files of valid schedules and interfacing with CsvReader, TimeManager,
+	 * and CourseComparison classes
 	 * 
 	 * @see toolbox.ScheduleWriter
 	 */
@@ -176,8 +179,7 @@ public class Tester {
 	}
 
 	/**
-	 * Tests functionality of the Schedule object and all functions in the
-	 * object
+	 * Tests functionality of the Schedule object and all functions in the object
 	 * 
 	 * @see objects.Schedule
 	 */
@@ -192,30 +194,31 @@ public class Tester {
 		System.out.println(testSchedule.getFinalEndTime());
 
 		System.out.println(testSchedule.getFirstStartTime());
-		
-		for(int i = 0; i < testSchedule.getProfessorNames().length; i++){
+
+		for (int i = 0; i < testSchedule.getProfessorNames().length; i++) {
 			System.out.println(testSchedule.getProfessorNames()[i]);
 		}
-		
-		for(int i = 0; i < testSchedule.getDaysArray().length; i++){
+
+		for (int i = 0; i < testSchedule.getDaysArray().length; i++) {
 			System.out.println(testSchedule.getDaysArray()[i]);
 		}
-		
-		for(int i = 0; i < testSchedule.getDaysHeld().length; i++){
+
+		for (int i = 0; i < testSchedule.getDaysHeld().length; i++) {
 			System.out.println(testSchedule.getDaysHeld()[i]);
 		}
-		
-		for(int i = 0; i < testSchedule.getTimesHeld().length; i++){
+
+		for (int i = 0; i < testSchedule.getTimesHeld().length; i++) {
 			System.out.println(testSchedule.getTimesHeld()[i]);
 		}
-		
-		for(int i = 0; i < testSchedule.getCourses().length; i++){
+
+		for (int i = 0; i < testSchedule.getCourses().length; i++) {
 			System.out.println(testSchedule.getCourses()[i]);
 		}
 	}
 
 	/**
 	 * Tests the functionality of the ScheduleRefiner
+	 * 
 	 * @see toolbox.ScheduleRefiner
 	 */
 	public static void testScheduleRefiner() {
@@ -227,16 +230,16 @@ public class Tester {
 
 		int tester = in.nextInt();
 		int refinedSchedules = 0;
-		//Earliest class functionality
-		if(tester == 0){
+		// Earliest class functionality
+		if (tester == 0) {
 			String testerString = in.nextLine();
 			System.out.println("Earliest prefered time for class: " + testerString);
 
 			dummyCourse.setStartTime(testerString);
 			refinedSchedules = ScheduleRefiner.refineOnStart(dummyCourse);
 		}
-		//Latest class functionality
-		else if(tester == 1){
+		// Latest class functionality
+		else if (tester == 1) {
 			String testerString = in.nextLine();
 			System.out.println("Latest prefered time for class: " + testerString);
 
@@ -246,18 +249,38 @@ public class Tester {
 
 		System.out.println("Refined " + refinedSchedules + " schedules");
 	}
-	
+
 	/**
 	 * @see gui.ScheduleTable
 	 */
 	public static void testScheduleTable() {
 		ScheduleTable.main(null);
 	}
-	
+
 	/**
 	 * @see gui.ScheduleMakerGui
 	 */
 	public static void testScheduleMakerGui() {
 		ScheduleMakerGui.main(null);
+	}
+	
+	/**
+	 * @see toolbox.ScheduleWriter
+	 */
+	public static void testScheduleCompilerFromFile() {
+		System.out.print("Dataset: ");
+		String dataset = in.nextLine();
+
+		String[] coursesNeeded = {"COP 2272C","CHM 2045","MAC 2312","CHM 2045L","EGN 1007"};
+		
+		System.out.println(coursesNeeded.toString());
+		
+		Course[] scheduleValue = ScheduleWriter.compileSchedule("files/input/" + dataset + ".csv", coursesNeeded);
+		
+		try {
+			ScheduleWriter.makeScheduleFile(scheduleValue);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
