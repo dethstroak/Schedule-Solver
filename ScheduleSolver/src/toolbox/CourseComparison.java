@@ -1,20 +1,21 @@
 package toolbox;
 
 import java.time.LocalTime;
-import objects.Course;
+import objects.NewCourse;
+import objects.NewCourse;
 
 /*
  * Ways a course conflicts with another course
  * 
  * 1. Same course taught
  * 2. Overlapping time and day
- * 	a] Course 1 begins before and ends during Course 2
- * 	b] Course 1 starts during Course 2 and ends after Course 2
- * 	c] Course 1 starts and ends during Course 2
+ * 	a] NewCourse 1 begins before and ends during NewCourse 2
+ * 	b] NewCourse 1 starts during NewCourse 2 and ends after NewCourse 2
+ * 	c] NewCourse 1 starts and ends during NewCourse 2
  */
 
 /**
- * Conflict detection tool between two Course
+ * Conflict detection tool between two NewCourse
  * 
  * @author Grayton Ward
  */
@@ -23,13 +24,13 @@ public class CourseComparison {
 	/**
 	 * Find conflicts between course0 and course1
 	 * 
-	 * @param course0
+	 * @param newCourse
 	 *            Base course
-	 * @param course1
-	 *            Course to compare to course0
+	 * @param newCourse2
+	 *            NewCourse to compare to course0
 	 */
-	public static boolean conflict(Course course0, Course course1) {
-		return (sameCourse(course0, course1) || overlapping(course0, course1));
+	public static boolean conflict(NewCourse newCourse, NewCourse newCourse2) {
+		return (sameCourse(newCourse, newCourse2) || overlapping(newCourse, newCourse2));
 	}
 
 	/**
@@ -38,11 +39,11 @@ public class CourseComparison {
 	 * @param course0
 	 *            Base course
 	 * @param course1
-	 *            Course to compare to course0
+	 *            NewCourse to compare to course0
 	 * 
 	 * @return True if courses are the same course, False otherwise
 	 */
-	private static boolean sameCourse(Course course0, Course course1) {
+	private static boolean sameCourse(NewCourse course0, NewCourse course1) {
 		return course0.getCourseTaught().equals(course1.getCourseTaught());
 	}
 
@@ -52,11 +53,11 @@ public class CourseComparison {
 	 * @param course0
 	 *            Base course
 	 * @param course1
-	 *            Course to compare to course0
+	 *            NewCourse to compare to course0
 	 * 
 	 * @return True if courses are overlapping, False is courses aren't overlapping
 	 */
-	private static boolean overlapping(Course course0, Course course1) {
+	private static boolean overlapping(NewCourse course0, NewCourse course1) {
 		boolean overlap = false;
 		LocalTime course0Start = course0.getStartTime();
 		LocalTime course0End = course0.getEndTime();

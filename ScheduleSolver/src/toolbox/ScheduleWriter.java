@@ -9,7 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import objects.Course;
+import objects.NewCourse;
+import objects.NewCourse;
 
 /**
  * All methods that pertain to writing information duting File IO
@@ -19,31 +20,31 @@ import objects.Course;
 public class ScheduleWriter {
 
 	/**
-	 * Creates all valid possible schedules given Course arrays
+	 * Creates all valid possible schedules given NewCourse arrays
 	 * 
 	 * @param courseValues
-	 *            Array of Course to sort into schedules
+	 *            Array of NewCourse to sort into schedules
 	 * 
 	 * @author Grayton Ward
 	 */
-	public static void makeScheduleFile(Course[] courseValues) throws IOException {
-		Map<String, List<Course>> courseMap = new HashMap<String, List<Course>>();
+	public static void makeScheduleFile(NewCourse[] courseValues) throws IOException {
+		Map<String, List<NewCourse>> courseMap = new HashMap<String, List<NewCourse>>();
 
 		// System.out.println(Arrays.toString(courseValues));
 
-		for (Course course : courseValues) {
+		for (NewCourse course : courseValues) {
 			String courseTaught = course.getCourseTaught();
-			List<Course> courseList = courseMap.get(courseTaught);
+			List<NewCourse> courseList = courseMap.get(courseTaught);
 			if (courseList != null) {
 				courseList.add(course);
 			} else {
-				List<Course> newCourseList = new ArrayList<Course>();
+				List<NewCourse> newCourseList = new ArrayList<NewCourse>();
 				newCourseList.add(course);
 				courseMap.put(courseTaught, newCourseList);
 			}
 		}
 
-		// for (Map.Entry<String, List<Course>> entry : courseMap.entrySet()) {
+		// for (Map.Entry<String, List<NewCourse>> entry : courseMap.entrySet()) {
 		// System.out.println(entry.getKey() + ":" +
 		// entry.getValue().toString());
 		// }
@@ -52,21 +53,21 @@ public class ScheduleWriter {
 
 		// System.out.println(Arrays.toString(courses.toArray()));
 
-		List<List<Course>> group = new ArrayList<List<Course>>();
+		List<List<NewCourse>> group = new ArrayList<List<NewCourse>>();
 
 		for (int i = 0; i < courses.size(); i++) {
 			group.add(courseMap.get(courses.get(i)));
 		}
 
-		// for(List<Course> thing : group){
+		// for(List<NewCourse> thing : group){
 		// System.out.println(Arrays.toString(thing.toArray()));
 		// }
 
 		group = getAllCases(group);
 
-		List<List<Course>> validSchedules = new ArrayList<List<Course>>();
+		List<List<NewCourse>> validSchedules = new ArrayList<List<NewCourse>>();
 
-		for (List<Course> schedule : group) {
+		for (List<NewCourse> schedule : group) {
 			boolean conflict = false;
 			outer: for (int i = 0; i < schedule.size(); i++) {
 				for (int j = i + 1; j < schedule.size(); j++) {
@@ -98,11 +99,11 @@ public class ScheduleWriter {
 	 * 
 	 * @author Grayton Ward
 	 */
-	public static List<List<Course>> getAllCases(List<List<Course>> totalList) {
-		List<List<Course>> result = new ArrayList<List<Course>>();
+	public static List<List<NewCourse>> getAllCases(List<List<NewCourse>> totalList) {
+		List<List<NewCourse>> result = new ArrayList<List<NewCourse>>();
 
 		for (int i = 0; i < totalList.get(0).size(); i++) {
-			result.add(i, new ArrayList<Course>(Arrays.asList(totalList.get(0).get(i))));
+			result.add(i, new ArrayList<NewCourse>(Arrays.asList(totalList.get(0).get(i))));
 		}
 
 		for (int index = 1; index < totalList.size(); index++) {
@@ -119,16 +120,16 @@ public class ScheduleWriter {
 	 *            Current List of Schedules
 	 * @param list2
 	 *            Class adding into schedules
-	 * @return new List of all possible schedules with new Course
+	 * @return new List of all possible schedules with new NewCourse
 	 * 
 	 * @author Grayton Ward
 	 */
-	private static List<List<Course>> combineTwoLists(List<List<Course>> list1, List<Course> list2) {
-		List<List<Course>> result = new ArrayList<List<Course>>();
+	private static List<List<NewCourse>> combineTwoLists(List<List<NewCourse>> list1, List<NewCourse> list2) {
+		List<List<NewCourse>> result = new ArrayList<List<NewCourse>>();
 
-		for (List<Course> s1 : list1) {
-			for (Course s2 : list2) {
-				List<Course> temp = new ArrayList<Course>(s1);
+		for (List<NewCourse> s1 : list1) {
+			for (NewCourse s2 : list2) {
+				List<NewCourse> temp = new ArrayList<NewCourse>(s1);
 				temp.add(s2);
 				result.add(temp);
 			}
@@ -137,7 +138,7 @@ public class ScheduleWriter {
 	}
 
 	/**
-	 * Creates .txt files for all valid possible schedules given a List<Course>
+	 * Creates .txt files for all valid possible schedules given a List<NewCourse>
 	 * 
 	 * 
 	 * @param file
@@ -147,7 +148,7 @@ public class ScheduleWriter {
 	 * 
 	 * @author Justin Krum
 	 */
-	private static void createFile(String file, List<Course> arrData) throws IOException {
+	private static void createFile(String file, List<NewCourse> arrData) throws IOException {
 		// File fileTemp = new File()
 		FileWriter writer = new FileWriter("files/output/" + file + ".csv");
 		int size = arrData.size();
@@ -176,20 +177,20 @@ public class ScheduleWriter {
 	}
 	
 	/**
-	 * Give it a file of Course to compare to and String of the courseTaught codes you need, and it will poop out an array of
-	 * compatible Course variables
+	 * Give it a file of NewCourse to compare to and String of the courseTaught codes you need, and it will poop out an array of
+	 * compatible NewCourse variables
 	 * 
 	 * @param coursesNeeded String array of the names of the courses needed by the user
 	 * @param toPath Path of the file that these course names are in
-	 * @return Course array to be sent to makeScheduleFile
+	 * @return NewCourse array to be sent to makeScheduleFile
 	 * 
 	 * @author Justin Krum
 	 */
-	public static Course[] compileSchedule(String toPath, String[] coursesNeeded) {
-		List<Course> compiledSchedule = new ArrayList<Course>();
+	public static NewCourse[] compileSchedule(String toPath, String[] coursesNeeded) {
+		List<NewCourse> compiledSchedule = new ArrayList<NewCourse>();
 		
 		//TODO decide which of the overloaded functions to use
-		Course[] avaliableCourses = CsvReader.getCourses(toPath);
+		NewCourse[] avaliableCourses = CsvReader.getCourses(toPath);
 		for(String name : coursesNeeded) {
 			for(int i = 0; i < avaliableCourses.length; i++) {
 				if(name.toUpperCase().equals(avaliableCourses[i].getCourseTaught().toUpperCase())) {
@@ -198,7 +199,7 @@ public class ScheduleWriter {
 			}
 		}
 		
-		Course[] compiledScheduleArray = new Course[compiledSchedule.size()];
+		NewCourse[] compiledScheduleArray = new NewCourse[compiledSchedule.size()];
 		for(int i = 0; i < compiledSchedule.size(); i++) {
 			compiledScheduleArray[i] = compiledSchedule.get(i);
 		}

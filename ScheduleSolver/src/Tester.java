@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import gui.*;
@@ -86,7 +87,7 @@ public class Tester {
 
 		String filePath = "files/input/" + dataSet + ".csv";
 
-		Course[] scheduleVal = CsvReader.getCourses(filePath);
+		NewCourse[] scheduleVal = CsvReader.getCourses(filePath);
 
 		for (int i = 0; i < CsvReader.getFileLength(filePath); i++) {
 			System.out.println(scheduleVal[i]);
@@ -114,42 +115,42 @@ public class Tester {
 	 */
 	public static void testCourseComparison() {
 
-		Course courseA = new Course("Srinivasan Sesha", "PHY 2049", "TR", "2:30PM-3:20PM", 1049, 3);
-		Course courseB = new Course("Parchamy Homaira", "IDS 2034", "T", "1:00PM-2:50PM", 1053, 3);
-		System.out.println(CourseComparison.conflict(courseA, courseB));
-
-		// ----------------------True Cases---------------------------
-		// Condition 1
-		Course courseC = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
-		Course courseD = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
-		System.out.println(CourseComparison.conflict(courseC, courseD));
-
-		// Condition 2a
-		Course courseE = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
-		Course courseF = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:01AM-9:16AM", 1068, 3);
-		System.out.println(CourseComparison.conflict(courseE, courseF));
-
-		// Condition 2b
-		Course courseG = new Course("Saffold Gabriel", "IDS 1038", "MW", "9:00AM-10:15AM", 1068, 3);
-		Course courseH = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:00AM-9:15AM", 1068, 3);
-		System.out.println(CourseComparison.conflict(courseG, courseH));
-
-		// Condition 2c
-		Course courseI = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:15AM-9:30AM", 1068, 3);
-		Course courseJ = new Course("Saffold Gabriel", "IDS 1039", "MW", "8:00AM-10:00AM", 1068, 3);
-		System.out.println(CourseComparison.conflict(courseI, courseJ));
-
-		// --------------------False Cases---------------------------
-
-		// Condition 1
-		Course courseK = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
-		Course courseL = new Course("Katugampola Don", "MAC 2311", "TRF", "12:30PM-1:45PM", 1044, 4);
-		System.out.println(CourseComparison.conflict(courseK, courseL));
-
-		// Condition 2
-		Course courseM = new Course("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
-		Course courseN = new Course("Saffold Gabriel", "IDS 1039", "TRF", "9:00AM-10:45AM", 1068, 3);
-		System.out.println(CourseComparison.conflict(courseM, courseN));
+//		NewCourse courseA = new NewCourse("Srinivasan Sesha", "PHY 2049", "TR", "2:30PM-3:20PM", 1049, 3);
+//		NewCourse courseB = new NewCourse("Parchamy Homaira", "IDS 2034", "T", "1:00PM-2:50PM", 1053, 3);
+//		System.out.println(CourseComparison.conflict(courseA, courseB));
+//
+//		// ----------------------True Cases---------------------------
+//		// Condition 1
+//		NewCourse courseC = new NewCourse("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+//		NewCourse courseD = new NewCourse("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+//		System.out.println(CourseComparison.conflict(courseC, courseD));
+//
+//		// Condition 2a
+//		NewCourse courseE = new NewCourse("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+//		NewCourse courseF = new NewCourse("Saffold Gabriel", "IDS 1039", "MW", "8:01AM-9:16AM", 1068, 3);
+//		System.out.println(CourseComparison.conflict(courseE, courseF));
+//
+//		// Condition 2b
+//		NewCourse courseG = new NewCourse("Saffold Gabriel", "IDS 1038", "MW", "9:00AM-10:15AM", 1068, 3);
+//		NewCourse courseH = new NewCourse("Saffold Gabriel", "IDS 1039", "MW", "8:00AM-9:15AM", 1068, 3);
+//		System.out.println(CourseComparison.conflict(courseG, courseH));
+//
+//		// Condition 2c
+//		NewCourse courseI = new NewCourse("Saffold Gabriel", "IDS 1038", "MW", "8:15AM-9:30AM", 1068, 3);
+//		NewCourse courseJ = new NewCourse("Saffold Gabriel", "IDS 1039", "MW", "8:00AM-10:00AM", 1068, 3);
+//		System.out.println(CourseComparison.conflict(courseI, courseJ));
+//
+//		// --------------------False Cases---------------------------
+//
+//		// Condition 1
+//		NewCourse courseK = new NewCourse("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+//		NewCourse courseL = new NewCourse("Katugampola Don", "MAC 2311", "TRF", "12:30PM-1:45PM", 1044, 4);
+//		System.out.println(CourseComparison.conflict(courseK, courseL));
+//
+//		// Condition 2
+//		NewCourse courseM = new NewCourse("Saffold Gabriel", "IDS 1038", "MW", "8:00AM-9:15AM", 1068, 3);
+//		NewCourse courseN = new NewCourse("Saffold Gabriel", "IDS 1039", "TRF", "9:00AM-10:45AM", 1068, 3);
+//		System.out.println(CourseComparison.conflict(courseM, courseN));
 	}
 
 	/**
@@ -166,7 +167,7 @@ public class Tester {
 		System.out.println("\n\n");
 
 		String filePath = "files/input/" + dataSet + ".csv";
-		Course[] scheduleVal = CsvReader.getCourses(filePath);
+		NewCourse[] scheduleVal = CsvReader.getCourses(filePath);
 
 		try {
 			ScheduleWriter.makeScheduleFile(scheduleVal);
@@ -225,8 +226,8 @@ public class Tester {
 		// Creates schedule files for testing
 		testScheduleWriter();
 
-		// Sets up dummy Course value to be used as comparison
-		Course dummyCourse = new Course("professorName", "XXX 0000", "", "", 0, 0);
+		// Sets up dummy NewCourse value to be used as comparison
+		NewCourse dummyCourse = new NewCourse("professorName", "XXX 0000", "", "", null, 0, 0, 0, null, null, null, 0, 0, 0, 0, null, null);
 
 		int tester = in.nextInt();
 		int refinedSchedules = 0;
@@ -263,7 +264,7 @@ public class Tester {
 	public static void testScheduleMakerGui() {
 		ScheduleMakerGui.main(null);
 	}
-	
+
 	/**
 	 * @see toolbox.ScheduleWriter
 	 */
@@ -271,12 +272,12 @@ public class Tester {
 		System.out.print("Dataset: ");
 		String dataset = in.nextLine();
 
-		String[] coursesNeeded = {"COP 2272C","CHM 2045","MAC 2312","CHM 2045L","EGN 1007"};
-		
-		System.out.println(coursesNeeded.toString());
-		
-		Course[] scheduleValue = ScheduleWriter.compileSchedule("files/input/" + dataset + ".csv", coursesNeeded);
-		
+		String[] coursesNeeded = {"COP 2272C", "CHM 2045", "MAC 2312", "CHM 2045L", "EGN 1007"};
+
+		System.out.println(Arrays.toString(coursesNeeded));
+
+		NewCourse[] scheduleValue = ScheduleWriter.compileSchedule("files/input/" + dataset + ".csv", coursesNeeded);
+
 		try {
 			ScheduleWriter.makeScheduleFile(scheduleValue);
 		} catch (IOException e) {

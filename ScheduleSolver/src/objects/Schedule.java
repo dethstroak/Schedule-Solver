@@ -9,7 +9,7 @@ import java.time.LocalTime;
  */
 public class Schedule {
 
-	Course[] courses;
+	NewCourse[] courses;
 	LocalTime finalEndTime, firstStartTime;
 	boolean[] daysArray;
 	
@@ -22,28 +22,28 @@ public class Schedule {
 
 	/**
 	 * 
-	 * @param courseList Array of Course objects that are in a valid schedule
+	 * @param newCourses Array of NewCourse objects that are in a valid schedule
 	 */
-	public Schedule(Course[] courseList) {
+	public Schedule(NewCourse[] newCourses) {
 		
-		this.courses = courseList;
+		this.courses = newCourses;
 		
-		setFirstStartTime(courseList);
-		setFinalEndTime(courseList);
+		setFirstStartTime(newCourses);
+		setFinalEndTime(newCourses);
 		
-		setDaysArray(courseList);
+		setDaysArray(newCourses);
 		
-		setProfessorNames(courseList);
-		setCoursesTaught(courseList);
-		setTimesHeld(courseList);
-		setDaysHeld(courseList);
+		setProfessorNames(newCourses);
+		setCoursesTaught(newCourses);
+		setTimesHeld(newCourses);
+		setDaysHeld(newCourses);
 		
-		setTotalCreditHours(courseList);
+		setTotalCreditHours(newCourses);
 	}
 	
 	public String toString(){
 		String returnString = "";
-		for(Course c : this.courses){
+		for(NewCourse c : this.courses){
 			returnString += c.toString() + "\n";
 		}
 		return returnString;
@@ -51,7 +51,7 @@ public class Schedule {
 	
 	/**
 	 * 
-	 * @return Latest end-time out of all the Course values in the Schedule
+	 * @return Latest end-time out of all the NewCourse values in the Schedule
 	 */
 	public LocalTime getFinalEndTime() {
 		return finalEndTime;
@@ -59,9 +59,9 @@ public class Schedule {
 	
 	/**
 	 * 
-	 * @param courseList Array of Course objects that are in a valid schedule
+	 * @param courseList Array of NewCourse objects that are in a valid schedule
 	 */
-	public void setFinalEndTime(Course[] courseList) {
+	public void setFinalEndTime(NewCourse[] courseList) {
 		this.finalEndTime = courseList[0].getEndTime();
 		
 		for (int i = 1; i < courseList.length; i++) {
@@ -77,9 +77,9 @@ public class Schedule {
 	
 	/**
 	 * 
-	 * @param courseList Array of Course objects that are in a valid schedule
+	 * @param courseList Array of NewCourse objects that are in a valid schedule
 	 */
-	public void setFirstStartTime(Course[] courseList) {
+	public void setFirstStartTime(NewCourse[] courseList) {
 		this.firstStartTime = courseList[0].getStartTime();
 				
 		for(int i = 1; i < courseList.length; i++) {
@@ -95,13 +95,13 @@ public class Schedule {
 	
 	/**
 	 * 
-	 * @param courseList Array of Course objects that are in a valid schedule
+	 * @param courseList Array of NewCourse objects that are in a valid schedule
 	 */
-	public void setDaysArray(Course[] courseList){
+	public void setDaysArray(NewCourse[] courseList){
 		
 		this.daysArray = new boolean[5];
 		
-		for(Course c : courseList){
+		for(NewCourse c : courseList){
 			for(int i = 0; i < c.getDaysArray().length; i++){
 				if(c.getDaysArray()[i] == true){
 					this.daysArray[i] = true;
@@ -110,15 +110,15 @@ public class Schedule {
 		}		
 	}
 	
-	public Course[] getCourses() {
+	public NewCourse[] getCourses() {
 		return courses;
 	}
 	
 	/**
 	 * 
-	 * @param courseList Array of Course objects that are in a valid schedule
+	 * @param courseList Array of NewCourse objects that are in a valid schedule
 	 */
-	public void setCourses(Course[] courses) {
+	public void setCourses(NewCourse[] courses) {
 		this.courses = courses;
 	}
 
@@ -128,9 +128,9 @@ public class Schedule {
 	
 	/**
 	 * 
-	 * @param courseList Array of Course objects that are in a valid schedule
+	 * @param courseList Array of NewCourse objects that are in a valid schedule
 	 */
-	public void setProfessorNames(Course[] courseList) {
+	public void setProfessorNames(NewCourse[] courseList) {
 		this.professorNames = new String[courseList.length];
 		for(int i = 0; i < professorNames.length; i++){
 			this.professorNames[i] = courseList[i].getProfessorName();
@@ -143,9 +143,9 @@ public class Schedule {
 
 	/**
 	 * 
-	 * @param courseList Array of Course objects that are in a valid schedule
+	 * @param courseList Array of NewCourse objects that are in a valid schedule
 	 */
-	public void setCoursesTaught(Course[] courseList) {
+	public void setCoursesTaught(NewCourse[] courseList) {
 		this.coursesTaught = new String[courseList.length];
 		for(int i = 0; i < coursesTaught.length; i++){
 			coursesTaught[i] = courseList[i].getCourseTaught();
@@ -158,9 +158,9 @@ public class Schedule {
 
 	/**
 	 * 
-	 * @param courseList Array of Course objects that are in a valid schedule
+	 * @param courseList Array of NewCourse objects that are in a valid schedule
 	 */
-	public void setTimesHeld(Course[] courseList) {
+	public void setTimesHeld(NewCourse[] courseList) {
 		this.timesHeld = new String[courseList.length];
 		for(int i = 0; i < timesHeld.length; i++){
 			timesHeld[i] = courseList[i].getTimeHeld();
@@ -173,9 +173,9 @@ public class Schedule {
 
 	/**
 	 * 
-	 * @param courseList Array of Course objects that are in a valid schedule
+	 * @param courseList Array of NewCourse objects that are in a valid schedule
 	 */
-	public void setDaysHeld(Course[] courseList) {
+	public void setDaysHeld(NewCourse[] courseList) {
 		this.daysHeld = new String[courseList.length];
 		for(int i = 0; i < daysHeld.length; i++){
 			daysHeld[i] = courseList[i].getDaysHeld();
@@ -188,9 +188,9 @@ public class Schedule {
 
 	/**
 	 * 
-	 * @param courseList Array of Course objects that are in a valid schedule
+	 * @param courseList Array of NewCourse objects that are in a valid schedule
 	 */
-	public void setTotalCreditHours(Course[] courseList) {
+	public void setTotalCreditHours(NewCourse[] courseList) {
 		this.totalCreditHours = 0;
 		for(int i = 0; i < courseList.length; i++){
 			this.totalCreditHours += courseList[i].getCreditHours();

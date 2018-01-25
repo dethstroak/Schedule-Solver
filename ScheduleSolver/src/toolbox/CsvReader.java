@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.LineNumberReader;
 
 import objects.Course;
+import objects.NewCourse;
 
 /**
  * All methods pertaining to reading information during File IO
@@ -96,62 +97,44 @@ public class CsvReader {
 	 * 
 	 * @return An array of Course data for the user to manipulate as needed
 	 */
-	public static Course[] getCourses(String toPath) {
+	public static NewCourse[] getCourses(String toPath) {
 
 		String line = "";
 		String cvsSplitBy = ",";
 		try (BufferedReader bReader = new BufferedReader(new FileReader(toPath))) {
 
-			Course[] scheduleValues = new Course[getFileLength(toPath)];
+			NewCourse[] scheduleValues = new NewCourse[getFileLength(toPath)];
 			int counter = 0;
 			while ((line = bReader.readLine()) != null) {
-
+				
+				/*
+				Course Type,Department,Course,Section,Course Name,Credits,Course Weight,Lecture Hours,Lab Hours,Offer Days,
+				Offer Time From
+				Offer Time To,Room Number,Maximum Enroll,Current Enroll,Wait Enrollment,Faculty First Name,Faculty Last Name
+				
+				*/
+				
 				// Split on the comma
-				String[] scheduleVal = line.split(cvsSplitBy);
-				scheduleValues[counter] = new Course(scheduleVal[0], // professorName
-						scheduleVal[1], // courseTaught
-						scheduleVal[2], // daysHeld
-						scheduleVal[3], // timesHeld
-						Integer.parseInt(scheduleVal[4]), // roomNumber
-						Integer.parseInt(scheduleVal[5])); // creditHours
-				counter++;
-
-			}
-
-			return scheduleValues;
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	/**
-	 * Gets a Course array from a path for a .csv file specified by the user
-	 *
-	 * @param inputFile
-	 *            File object pointing to the .csv file specified by the user
-	 * 
-	 * @return An array of Course data for the user to manipulate as needed
-	 */
-	public static Course[] getCourses(File inputFile) {
-
-		String line = "";
-		String cvsSplitBy = ",";
-		try (BufferedReader bReader = new BufferedReader(new FileReader(inputFile))) {
-
-			Course[] scheduleValues = new Course[getFileLength(inputFile)];
-			int counter = 0;
-			while ((line = bReader.readLine()) != null) {
-
-				// Split on the comma
-				String[] scheduleVal = line.split(cvsSplitBy);
-				scheduleValues[counter] = new Course(scheduleVal[0], // professorName
-						scheduleVal[1], // courseTaught
-						scheduleVal[2], // daysHeld
-						scheduleVal[3], // timesHeld
-						Integer.parseInt(scheduleVal[4]), // roomNumber
-						Integer.parseInt(scheduleVal[5])); // creditHours
+				String[] lineSplit = line.split(cvsSplitBy);
+				scheduleValues[counter] = new NewCourse(
+						lineSplit[0], //courseType
+						lineSplit[1], //departmentID
+						lineSplit[2], //courseTaught
+						lineSplit[3], //courseSection
+						lineSplit[4], //courseName
+						Double.parseDouble(lineSplit[6]), //courseWeight
+						Integer.parseInt(lineSplit[7]), //lectureHours
+						Integer.parseInt(lineSplit[8]), //labHours
+						lineSplit[9], //offerDays
+						lineSplit[10], //startTime
+						lineSplit[11], //endTime
+						Integer.parseInt(lineSplit[12]), //roomNumber
+						Integer.parseInt(lineSplit[13]), //maximumEnroll
+						Integer.parseInt(lineSplit[14]), //currentEnroll
+						Integer.parseInt(lineSplit[15]), //waitEnroll
+						lineSplit[16], //profFirstName
+						lineSplit[17]  //profLastName
+						);
 				counter++;
 
 			}

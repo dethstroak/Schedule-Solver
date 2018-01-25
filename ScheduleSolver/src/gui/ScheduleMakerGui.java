@@ -81,7 +81,7 @@ public class ScheduleMakerGui {
 
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
 			            File file = fc.getSelectedFile();
-			            ScheduleWriter.makeScheduleFile(CsvReader.getCourses(file));
+			            ScheduleWriter.makeScheduleFile(CsvReader.getCourses(file.getPath()));
 			            System.out.println("Opening: " + file.getName() + ".");
 			        } else {
 			            System.out.println("Open command cancelled by user.");
